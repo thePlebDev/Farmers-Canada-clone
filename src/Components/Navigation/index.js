@@ -5,29 +5,47 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 
 const Container = styled.div`
-  border:1px solid red;
+
   height:70px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  @media only screen and (min-width: 850px) {
+
+    width:90%;
+    margin:0 auto;
+  }
+
 `
 
 const Vendor = styled.div`
   background-color:#29b706;
   padding:6px 10px;
   color:white;
-  width:120px;
+  width:140px;
   height:20px;
   border-radius:4px;
   font-weight:bold;
   margin-left:5px;
   margin-right:5px;
+  text-align:center;
+
+  @media only screen and (min-width: 850px) {
+
+    width:160px;
+  }
 `
 const ShoppingContainer = styled.div`
   font-size:20px;
   color:rgba(102,102,102,0.85);
   margin-left:5px;
   margin-right:5px;
+  border-left:1px solid #29b706;
+  padding-left:10px;
+  cursor:pointer;
+  @media only screen and (min-width: 850px) {
+    color: #29b706;
+  }
 `
 const MenuContainer = styled.div`
   color:#999;
@@ -40,6 +58,9 @@ const MenuContainer = styled.div`
   border-radius:4px;
   margin-left:5px;
   margin-right:5px;
+  @media only screen and (min-width: 850px) {
+    display:none;
+  }
 
 `
 const Farmer = styled.div`
@@ -53,13 +74,34 @@ const Farmer = styled.div`
     margin-left:5px;
     margin-right:5px;
 
+
 `
 
 const Section1Container = styled.div`
-
   display:flex;
   align-items:center;
+  position:relative;
+
 `
+
+const Button = styled.div`
+  color:#29b706;
+  padding:5px 11px;
+  font-size:18px;
+  font-weight:500px;
+  margin:0 10px;
+  display:none;
+  @media only screen and (min-width: 850px) {
+    display:block;
+  }
+`
+
+const Register = styled(Button)`
+  border:1px solid #29b706;
+
+  border-radius:3px;
+`
+
 
 
 
@@ -75,8 +117,10 @@ const Navigation =()=>{
         <Farmer>F</Farmer>
       </Section1Container>
 
-     <Section1Container>
+     <Section1Container  >
         <Vendor>Become a Vendor</Vendor>
+        <Button>Login</Button>
+        <Register>Register</Register>
         <ShoppingContainer>
             <ShoppingBasketIcon/>
         </ShoppingContainer>
