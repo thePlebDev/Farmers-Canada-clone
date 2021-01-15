@@ -1,17 +1,19 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const Container = styled.div`
 
   height:70px;
+  padding-top:20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   @media only screen and (min-width: 850px) {
-
+    padding-top:0;
     width:90%;
     margin:0 auto;
   }
@@ -102,16 +104,52 @@ const Register = styled(Button)`
   border-radius:3px;
 `
 
+const Modal = styled.div`
+  visibility:${({state})=>state ? 'visible' : 'hidden'};
+  width:100vw;
+  height:100%;
+  background-color:black;
+  opacity:0;
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9;
+  transition:0.35s all;
+  opacity:${({state})=>state ? '0.7':'0'};
 
+`
 
+const CloseContainer = styled.div`
+
+color:white;
+z-index:99;
+position:absolute;
+right:0%;
+top:0%;
+transition:0.35s all;
+transform:${({state})=>state ? 'translateY(0px)':'translateY(15px)'}
+
+`
 
 
 const Navigation =()=>{
+  const [state,setState] = useState(false)
+
+  const handleClick =()=>{
+    setState(!state)
+  }
 
   return(
     <Container>
+
+      <Modal state={state}>
+        <CloseContainer onClick={()=>handleClick()} state={state}>
+          <CloseIcon style={{fontSize:'40px'}}/>
+        </CloseContainer>
+      </Modal>
+
       <Section1Container>
-        <MenuContainer>
+        <MenuContainer onClick={()=>{handleClick()}}>
           <MenuIcon/>
         </MenuContainer>
         <Farmer>F</Farmer>
