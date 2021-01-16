@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 import styled from 'styled-components'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
+
+import Modal from '../Modal'
 
 
 const Container = styled.div`
@@ -104,32 +105,9 @@ const Register = styled(Button)`
   border-radius:3px;
 `
 
-const Modal = styled.div`
-  visibility:${({state})=>state ? 'visible' : 'hidden'};
-  width:100vw;
-  height:100%;
-  background-color:black;
-  opacity:0;
-  position:absolute;
-  left:0;
-  top:0;
-  z-index:9;
-  transition:0.35s all;
-  opacity:${({state})=>state ? '0.7':'0'};
 
-`
 
-const CloseContainer = styled.div`
 
-color:white;
-z-index:99;
-position:absolute;
-right:0%;
-top:0%;
-transition:0.35s all;
-transform:${({state})=>state ? 'translateY(0px)':'translateY(15px)'}
-
-`
 
 
 const Navigation =()=>{
@@ -142,11 +120,7 @@ const Navigation =()=>{
   return(
     <Container>
 
-      <Modal state={state}>
-        <CloseContainer onClick={()=>handleClick()} state={state}>
-          <CloseIcon style={{fontSize:'40px'}}/>
-        </CloseContainer>
-      </Modal>
+      <Modal state={state} handleClick={handleClick}/>
 
       <Section1Container>
         <MenuContainer onClick={()=>{handleClick()}}>
@@ -155,7 +129,7 @@ const Navigation =()=>{
         <Farmer>F</Farmer>
       </Section1Container>
 
-     <Section1Container  >
+     <Section1Container>
         <Vendor>Become a Vendor</Vendor>
         <Button>Login</Button>
         <Register>Register</Register>
