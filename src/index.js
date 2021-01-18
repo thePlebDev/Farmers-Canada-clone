@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux'
 
 import App from './Components/App'
+import rootReducer from './Reducers'
 
+const store = createStore(rootReducer)
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -20,6 +23,8 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <Router>
-    <GlobalStyle/>
-      <App/>
+    <Provider store={store}>
+      <GlobalStyle/>
+        <App/>
+    </Provider>
   </Router>,document.getElementById('root'))
