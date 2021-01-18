@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import mobileView from './MobileReducers'
 
 
 //const rootReducer = combineReducers({reducer1,reducer2})
@@ -6,20 +7,7 @@ import {combineReducers} from 'redux';
 //then the rootReducer gets passed to the store
 
 //1) make a reducer
-const mobileView =(state = false,action)=>{
-  switch(action.type){
-    case "FALSE":
-      state = false
-      return state
-    case "TRUE":
-      state = true;
-      return state
 
-    default:
-      return state
-
-  }
-}
 const rootReducer = combineReducers({mobileView})
 
 export default rootReducer
