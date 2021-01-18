@@ -121,7 +121,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
 
       <Section1Container>
         <MenuContainer onClick={()=>{trueDispatcher()}}>
-          <MenuIcon/>
+          <MenuIcon data-testid="nav-toggle"/>
         </MenuContainer>
         <Farmer>F</Farmer>
       </Section1Container>
