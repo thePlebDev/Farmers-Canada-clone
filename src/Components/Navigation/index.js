@@ -1,9 +1,11 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
+import { connect } from 'react-redux';
 
 import Modal from '../Modal'
+import mobileViewDispatch from '../../Dispatchers/MobileView'
 
 
 const Container = styled.div`
@@ -110,20 +112,15 @@ const Register = styled(Button)`
 
 
 
-const Navigation =()=>{
-  const [state,setState] = useState(false)
-
-  const handleClick =()=>{
-    setState(!state)
-  }
+const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
 
   return(
     <Container>
 
-      <Modal state={state} handleClick={handleClick}/>
+      <Modal state={mobileView} handleClick={falseDispatcher}/>
 
       <Section1Container>
-        <MenuContainer onClick={()=>{handleClick()}}>
+        <MenuContainer onClick={()=>{trueDispatcher()}}>
           <MenuIcon/>
         </MenuContainer>
         <Farmer>F</Farmer>
@@ -142,4 +139,14 @@ const Navigation =()=>{
   )
 }
 
-export default Navigation
+
+const mapStateToProps =(state)=> ({mobileView:state.mobileView})
+const mapDispatchToProps ={
+  falseDispatcher:mobileViewDispatch.false,
+  trueDispatcher:mobileViewDispatch.true
+}
+
+
+const ConnectedNavigation = connect(mapStateToProps,mapDispatchToProps)(Navigation)
+
+export default ConnectedNavigation
