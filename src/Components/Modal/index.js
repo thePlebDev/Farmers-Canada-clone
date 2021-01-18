@@ -35,7 +35,7 @@ const Container = styled.div`
 const Nav = styled.div`
   background-color:white;
   height:100%;
-  width:200px;
+  width:260px;
   position:fixed;
   transition:0.35s all;
   transform:${({state})=>state? 'translateX(0px)':'translateX(-200px)'};
