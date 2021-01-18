@@ -10,8 +10,8 @@ const CloseContainer = styled.div`
 color:white;
 z-index:99;
 position:absolute;
-right:0%;
-top:0%;
+right:0;
+top:0;
 transition:0.35s all;
 transform:${({state})=>state ? 'translateY(0px)':'translateY(15px)'}
 
@@ -19,13 +19,13 @@ transform:${({state})=>state ? 'translateY(0px)':'translateY(15px)'}
 
 const Container = styled.div`
   visibility:${({state})=>state ? 'visible' : 'hidden'};
-  width:100vw;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
   height:100%;
   background-color:black;
   opacity:0;
-  position:absolute;
-  left:0;
-  top:0;
   z-index:9;
   transition:0.35s all;
   opacity:${({state})=>state ? '0.9':'0'};
@@ -34,9 +34,9 @@ const Container = styled.div`
 
 const Nav = styled.div`
   background-color:white;
-  height:100vh;
+  height:100%;
   width:200px;
-  position:absolute;
+  position:fixed;
   transition:0.35s all;
   transform:${({state})=>state? 'translateX(0px)':'translateX(-200px)'};
 

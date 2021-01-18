@@ -136,6 +136,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
       </Section1Container>
 
     </Container>
+
   )
 }
 

@@ -12,7 +12,9 @@ const store = createStore(rootReducer)
 
 const GlobalStyle = createGlobalStyle`
   body{
-    margin:0;
+    min-height:100%;
+    widht:100%;
+    margin:0 ;
     padding:0;
     overflow-x: hidden;
     box-sizing:border-box;
