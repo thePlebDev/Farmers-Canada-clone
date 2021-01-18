@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import styled from 'styled-components'
 import CloseIcon from '@material-ui/icons/Close';
+import { connect } from 'react-redux';
 
 import SearchInput from '../SearchInput'
 
@@ -42,11 +43,14 @@ const Nav = styled.div`
 `
 
 
-const Modal = ({state,handleClick})=>{
+const Modal = ({state,handleClick,mobileView,falseDispatcher})=>{
+  console.log(mobileView)
+
+
 
   return(
-    <Container state={state}>
-      <CloseContainer onClick={()=>handleClick()} state={state}>
+    <Container state={mobileView}>
+      <CloseContainer onClick={()=>falseDispatcher()} state={state}>
         <CloseIcon style={{fontSize:'40px'}}/>
       </CloseContainer>
       <Nav state={state}>
@@ -56,4 +60,18 @@ const Modal = ({state,handleClick})=>{
   )
 }
 
-export default Modal
+const mapStateToProps = state => ({mobileView:state.mobileView})
+
+const falseDispatcher = () =>{
+  return({
+    type:'FALSE'
+  })
+}
+
+
+const mapDispatchToProps = {
+  falseDispatcher
+}
+
+const ConnectedModal = connect(mapStateToProps,mapDispatchToProps)(Modal)
+export default ConnectedModal
