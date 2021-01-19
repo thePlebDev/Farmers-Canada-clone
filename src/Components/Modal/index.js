@@ -24,21 +24,22 @@ const Container = styled.div`
   top:0;
   width:100%;
   height:100%;
-  background-color:black;
-  opacity:0;
+
+  background-color:${({state})=> state ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0)'};
+
   z-index:9;
   transition:0.35s all;
-  opacity:${({state})=>state ? '0.9':'0'};
+
 
 `
 
 const Nav = styled.div`
-  background-color:white;
   height:100%;
   width:260px;
+  background-color:rgba(255,255,255,0.9);
   position:fixed;
   transition:0.35s all;
-  transform:${({state})=>state? 'translateX(0px)':'translateX(-200px)'};
+  transform:${({state})=>state? 'translateX(0px)':'translateX(-260px)'};
 
 `
 

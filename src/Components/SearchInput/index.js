@@ -15,7 +15,7 @@ const SearchInput = ()=>{
   return(
     <SearchForm handleSubmit={handleSubmit}>
       <TextInput state={state.search} name={'search'} handleChange={handleChange} />
-      <button type="submit">Search</button>
+  
     </SearchForm>
   )
 }
