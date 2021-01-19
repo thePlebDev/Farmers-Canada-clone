@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 
+import {Vendor} from '../../Assets/Styles/Buttons'
+
 
 const Container = styled.div`
 
@@ -19,6 +21,7 @@ const Item = styled.div`
   border-top:1px solid #ececec;
   border-bottom:1px solid rgb(215, 215, 215);
   margin-top:10px;
+  margin-bottom:10px;
   font-family: "Varela Round";
 `
 
@@ -34,7 +37,7 @@ const PageLinks =()=>{
         <Item>Register</Item>
         <Item>Login</Item>
 
-        <button>Become a developer</button>
+        <Vendor>Become a Vendor</Vendor>
 
     </Container>
   )

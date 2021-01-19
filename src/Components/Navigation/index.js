@@ -92,10 +92,6 @@ const Register = styled(Button)`
 `
 
 
-
-
-
-
 const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
 
   return(
