@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 import CloseIcon from '@material-ui/icons/Close';
 
-import SearchInput from '../SearchInput'
-
+import SearchInput from '../SearchInput';
+import PageLinks from '../PageLinks';
 
 const CloseContainer = styled.div`
 
@@ -25,7 +25,7 @@ const Container = styled.div`
   width:100%;
   height:100%;
 
-  background-color:${({state})=> state ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0)'};
+  background-color:${({state})=> state ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0)'};
 
   z-index:9;
   transition:0.35s all;
@@ -53,6 +53,7 @@ const Modal = ({state,handleClick,mobileView,falseDispatcher})=>{
       </CloseContainer>
       <Nav state={state}>
         <SearchInput />
+        <PageLinks />
       </Nav>
     </Container>
   )

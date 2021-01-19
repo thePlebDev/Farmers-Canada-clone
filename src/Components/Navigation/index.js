@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import Modal from '../Modal'
 import mobileViewDispatch from '../../Dispatchers/MobileView'
+import { Vendor } from '../../Assets/Styles/Buttons'
 
 
 const Container = styled.div`
@@ -23,23 +24,6 @@ const Container = styled.div`
 
 `
 
-const Vendor = styled.div`
-  background-color:#29b706;
-  padding:6px 10px;
-  color:white;
-  width:140px;
-  height:20px;
-  border-radius:4px;
-  font-weight:bold;
-  margin-left:5px;
-  margin-right:5px;
-  text-align:center;
-
-  @media only screen and (min-width: 850px) {
-
-    width:160px;
-  }
-`
 const ShoppingContainer = styled.div`
   font-size:20px;
   color:rgba(102,102,102,0.85);

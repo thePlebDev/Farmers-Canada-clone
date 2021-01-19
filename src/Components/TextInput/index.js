@@ -20,12 +20,12 @@ const Container = styled.div`
 `
 const SearchContainer = styled.div`
   position:absolute;
-  right:11px;
+  right:12px;
   top:40px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:3px 6px;
+  padding:3.4px 6px;
   border:1px solid #ddd;
   border-left:none;
   background-color:#E62E04;
