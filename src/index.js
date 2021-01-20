@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     box-sizing:border-box;
     text-decoration:none;
+      font-family: "Varela Round";
   };
   html{
     margin:0 ;
