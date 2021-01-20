@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useRef} from 'react';
 import styled from 'styled-components'
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -24,13 +24,9 @@ const Container = styled.div`
   top:0;
   width:100%;
   height:100%;
-
   background-color:${({state})=> state ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0)'};
-
   z-index:9;
   transition:0.35s all;
-
-
 `
 
 const Nav = styled.div`
@@ -40,15 +36,31 @@ const Nav = styled.div`
   position:fixed;
   transition:0.35s all;
   transform:${({state})=>state? 'translateX(0px)':'translateX(-260px)'};
-
 `
 
 
 const Modal = ({state,handleClick,mobileView,falseDispatcher})=>{
+  const node = useRef()
+  const handleDetection =(e)=>{
+    // if(node.current.contains(e.target)){
+    //   console.log('inside the click')
+    // }else{
+    //   console.log('outside the click')
+    // }
+  }
+
+  useEffect(()=>{
+    document.addEventListener("mousedown",handleDetection);
+
+    //return function to be called when unmounted
+    return ()=>{
+      document.removeEventListener("mousedown",handleDetection);
+    }
+  },[])
 
   return(
-    <Container state={state}>
-      <CloseContainer onClick={()=>handleClick()} state={state}>
+    <Container state={state} ref={node}>
+      <CloseContainer data-testid="close" onClick={()=>handleClick()} state={state}>
         <CloseIcon style={{fontSize:'40px'}}/>
       </CloseContainer>
       <Nav state={state}>

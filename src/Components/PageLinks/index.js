@@ -25,18 +25,18 @@ const Item = styled.div`
   font-family: "Varela Round";
 `
 
+const menu = ['features','Network','Careers','Terms and Conditions', 'Register','Login']
+
 
 const PageLinks =()=>{
 
   return(
     <Container>
-        <Item>Features</Item>
-        <Item>Network</Item>
-        <Item>Careers</Item>
-        <Item>Terms and conditions</Item>
-        <Item>Register</Item>
-        <Item>Login</Item>
-
+        {
+          menu.map((item,index)=>{
+            return <Item key={index}>{item}</Item>
+          })
+        }
         <Vendor>Become a Vendor</Vendor>
 
     </Container>

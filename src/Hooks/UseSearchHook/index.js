@@ -26,6 +26,7 @@ const useSearchHook =(validateFunc)=>{
 
   return{
     state,
+    errors,
     handleSubmit,
     handleChange
   }

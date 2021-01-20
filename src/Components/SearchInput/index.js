@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 
 import useSearchHook from '../../Hooks/UseSearchHook'
 import searchUtils from '../../Utils/SearchUtils'
@@ -7,15 +7,14 @@ import TextInput from '../TextInput'
 import SearchForm from '../SearchForm'
 
 
-const SearchInput = ()=>{
+const SearchInput = ({useHook = useSearchHook})=>{
 
-  const {state,handleChange,handleSubmit} = useSearchHook(searchUtils.validate)
+  const {state,handleChange,handleSubmit,errors} = useHook(searchUtils.validate)
 
 
   return(
     <SearchForm handleSubmit={handleSubmit}>
-      <TextInput state={state.search} name={'search'} handleChange={handleChange} />
-  
+      <TextInput data-testid="textInput1" state={state.search} errors={errors} name={'search'} handleChange={handleChange} />
     </SearchForm>
   )
 }

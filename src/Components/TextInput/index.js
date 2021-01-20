@@ -18,7 +18,7 @@ const Container = styled.div`
 
   position:relative;
 `
-const SearchContainer = styled.div`
+const SearchContainer = styled.button`
   position:absolute;
   right:12px;
   top:40px;
@@ -31,7 +31,7 @@ const SearchContainer = styled.div`
   background-color:#E62E04;
   color:white;
   border-radius:0 4px 4px 0;
-  width:15%;
+  width:20%;
   font-weight:bold;
 
 `
@@ -42,8 +42,8 @@ const TextInput =({state,handleChange,name})=>{
     <Container>
     <label htmlFor="search"></label>
     <Input id="search" type="text" name={name} placeholder={'e.g. blueberry, micro greens, Smith'} autocomplete="off" value={state} onChange={(e)=>handleChange(e)}/>
-      <SearchContainer>
-        <SearchIcon style={{fontSize:'30px',fontWeight:'bold'}}/>
+      <SearchContainer type='submit' data-testid="submit">
+        <SearchIcon style={{fontSize:'30px',fontWeight:'bold'}} />
       </SearchContainer>
     </Container>
   )
