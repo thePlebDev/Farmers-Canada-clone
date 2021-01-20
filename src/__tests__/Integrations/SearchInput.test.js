@@ -22,14 +22,10 @@ describe('testing the search form',()=>{
         handleChange:handleSubmit
       }
     }
-
     const {getByTestId} = render(<SearchInput useHook={mockFn}/>)
 
     userEvent.click(getByTestId('submit'))
       expect(handleSubmit.mock.calls.length).toBe(1)
-
   })
-
-
 
 })
