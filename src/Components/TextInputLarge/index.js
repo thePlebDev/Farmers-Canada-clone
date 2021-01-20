@@ -25,7 +25,7 @@ const Input = styled.input`
   font-size:1.2rem;
 `
 
-const SearchButton = styled.div`
+const SearchButton = styled.button`
   background-color:red;
   margin-top:20px;
   width:68px;
@@ -33,20 +33,23 @@ const SearchButton = styled.div`
   align-items:center;
   justify-content:center;
   padding:4.7px;
+  border:none;
   border-radius:0px 4px 4px 0;
+  color:white;
+
 `
 
 
 
 
 
-const TextInputLarge =()=>{
+const TextInputLarge =({state,handleChange,errors})=>{
 
   return(
     <Container>
       <label htmlFor='search'/>
-      <Input id="search"/>
-      <SearchButton><SearchIcon style={{fontSize:'50px'}}/></SearchButton>
+      <Input id="search" value={state} name="search" onChange={(e)=>handleChange(e)} errors={errors} placeholder={'e.g. blueberry, micro greens, Smith'} autocomplete="off"/>
+      <SearchButton type="submit"><SearchIcon style={{fontSize:'50px'}}/></SearchButton>
     </Container>
 
   )

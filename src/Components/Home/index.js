@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import SearchForm from '../SearchForm'
 import TextInputLarge from '../TextInputLarge'
 
+import useSearchHook from '../../Hooks/UseSearchHook'
+import searchUtils from '../../Utils/SearchUtils'
+
 const Container = styled.div`
   position:relative;
 
@@ -48,6 +51,7 @@ const Word = styled.div`
 `
 
 const Home = ()=>{
+  const {state,handleSubmit,handleChange,errors} = useSearchHook(searchUtils.validate)
 
   return(
     <Container>
@@ -56,7 +60,9 @@ const Home = ()=>{
         <WordContainer>
             <Word>Fresh local pickups or</Word>
             <Word>Cash on delivery</Word>
-            <TextInputLarge/>
+            <SearchForm handleSubmit={handleSubmit}>
+              <TextInputLarge state={state.search} errors={errors} handleChange={handleChange}/>
+            </SearchForm>
         </WordContainer>
       </SubContainer>
     </Container>

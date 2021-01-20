@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
-import Modal from '../Modal'
+import Modal from '../Modal';
 import mobileViewDispatch from '../../Dispatchers/MobileView'
 import { Vendor } from '../../Assets/Styles/Buttons'
 
@@ -80,6 +81,7 @@ const Button = styled.div`
   font-weight:500px;
   margin:0 10px;
   display:none;
+  cursor:pointer;
   @media only screen and (min-width: 850px) {
     display:block;
   }
@@ -87,8 +89,13 @@ const Button = styled.div`
 
 const Register = styled(Button)`
   border:1px solid #29b706;
-
   border-radius:3px;
+  transition:0.25s all;
+
+  &:hover{
+    background-color:#29b706;
+    color:white;
+  }
 `
 
 
@@ -114,7 +121,6 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
             <ShoppingBasketIcon/>
         </ShoppingContainer>
       </Section1Container>
-
     </Container>
 
   )

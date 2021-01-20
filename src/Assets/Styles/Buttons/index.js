@@ -14,6 +14,7 @@ const Vendor = styled.div`
   margin-left:5px;
   margin-right:5px;
   text-align:center;
+  cursor:pointer;
 
   @media only screen and (min-width: 850px) {
 
