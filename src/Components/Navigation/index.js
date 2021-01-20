@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './index.css'
 
 import Modal from '../Modal';
 import mobileViewDispatch from '../../Dispatchers/MobileView'
@@ -63,6 +64,7 @@ const Farmer = styled.div`
     border-radius:5px;
     margin-left:5px;
     margin-right:5px;
+    cursor:pointer
 
 
 `
@@ -79,6 +81,7 @@ const Button = styled.div`
   padding:5px 11px;
   font-size:18px;
   font-weight:500px;
+  text-decoration:none;
   margin:0 10px;
   display:none;
   cursor:pointer;
@@ -110,13 +113,25 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
         <MenuContainer onClick={()=>{trueDispatcher()}}>
           <MenuIcon data-testid="nav-toggle"/>
         </MenuContainer>
-        <Farmer>F</Farmer>
+        <Link to='/'>
+          <Farmer>F</Farmer>
+        </Link>
       </Section1Container>
 
      <Section1Container>
+
+      <Link to='/becomeVendor'>
         <Vendor>Become a Vendor</Vendor>
-        <Button>Login</Button>
-        <Register>Register</Register>
+      </Link>
+
+        <Link to='/login'>
+          <Button>Login</Button>
+        </Link>
+
+        <Link to='/register'>
+          <Register>Register</Register>
+        </Link>
+
         <ShoppingContainer>
             <ShoppingBasketIcon/>
         </ShoppingContainer>

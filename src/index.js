@@ -18,7 +18,8 @@ const GlobalStyle = createGlobalStyle`
     padding:0;
     overflow-x: hidden;
     box-sizing:border-box;
-  }
+    text-decoration:none;
+  };
   html{
     margin:0 ;
     padding:0;
