@@ -11,7 +11,7 @@ const Input = styled.input`
   font-size:17px;
   margin: 0 auto;
   margin-top:30px;
-  width:90%;
+  width:95%;
 `
 
 const Container = styled.div`

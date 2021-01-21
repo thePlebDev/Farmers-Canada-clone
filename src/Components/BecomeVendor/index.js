@@ -11,17 +11,22 @@ const Container = styled.div`
     height:450px;
     background-color:#446084;
     display:grid;
-    justify-content:center;
-    padding-top:20px;
+    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    align-items:center;
+
 
 `
 
 const FormContainer = styled.div`
   background-color:white;
-  height:70%;
   border-radius:4px;
   padding:5px;
   width:295px;
+  margin:0px auto;
+
+  @media only screen and (max-width: 600px){
+    align-self:start;
+  }
 `
 
 const Title = styled.h2`
@@ -47,6 +52,29 @@ const Button = styled.button`
 
 `
 
+const MainTitle = styled.h1`
+color:white;
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+padding:0;
+font-size:3.5em;
+font-weight:500;
+font-family:"Varela Round";
+margin-top:10px;
+margin-bottom:5px;
+
+@media only screen and (max-width: 600px){
+  display:none;
+}
+
+`
+
+const MainTitle2 = styled(MainTitle)`
+  color:#9c3;
+`
+
+const TitleContainer = styled.div`
+  text-align:center
+`
 
 
 
@@ -54,6 +82,11 @@ const BecomeVender =()=>{
   const {state,handleChange,handleSubmit,errors} = useSearchHook(searchUtils.validateVendor)
   return(
     <Container>
+    <TitleContainer>
+      <MainTitle>Create your own</MainTitle>
+      <MainTitle2>Success Story!</MainTitle2>
+    </TitleContainer>
+
       <FormContainer>
         <Title>Your Online Farm Store</Title>
         <SearchForm handleSubmit={handleSubmit}>
@@ -61,7 +94,6 @@ const BecomeVender =()=>{
           <TextInputVendor placeholder="Email Adress" errors={errors.email} type='email' name="email" value={state.email} handleChange={handleChange}/>
           <Button type="submit">Become a vendor</Button>
         </SearchForm>
-
       </FormContainer>
     </Container>
   )
