@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import SearchForm from '../SearchForm'
 import TextInputVendor from '../TextInputVendor'
-import {Vendor} from '../../Assets/Styles/Buttons'
+
+import useSearchHook from '../../Hooks/UseSearchHook'
+import searchUtils from '../../Utils/SearchUtils';
 
 const Container = styled.div`
     height:450px;
@@ -33,25 +35,33 @@ const Title = styled.h2`
   margin-top:0.2em;
 `
 
-const Button = styled(Vendor)`
-  margin:20px auto;
+const Button = styled.button`
+  background-color:#29b706;
+  border:1px solid #29b706;
+  padding:6px 10px;
+  color:white;
+  width:140px;
+  height:40px;
+  margin:25px auto;
+  border-radius:4px;
+
 `
 
 
 
 
 const BecomeVender =()=>{
-
+  const {state,handleChange,handleSubmit,errors} = useSearchHook(searchUtils.validateVendor)
   return(
     <Container>
       <FormContainer>
         <Title>Your Online Farm Store</Title>
-        <SearchForm>
-          <TextInputVendor placeholder="Farm Name"/>
-          <TextInputVendor placeholder="Email Adress"/>
+        <SearchForm handleSubmit={handleSubmit}>
+          <TextInputVendor placeholder="Farm Name" errors={errors.farm} name='farm' type="text" handleChange={handleChange} value={state.farm}/>
+          <TextInputVendor placeholder="Email Adress" errors={errors.email} type='email' name="email" value={state.email} handleChange={handleChange}/>
+          <Button type="submit">Become a vendor</Button>
         </SearchForm>
 
-        <Button>Become a vendor</Button>
       </FormContainer>
     </Container>
   )

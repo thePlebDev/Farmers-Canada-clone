@@ -14,13 +14,33 @@ const Input = styled.input`
   width:90%;
 `
 
-const TextInputVendor = ({placeholder}) =>{
+const Container = styled.div`
+  position:relative;
+`
+const Error = styled.div`
+  position:absolute;
+  color:red;
+  top:15px;
+  left:20%;
+  font-size:10px;
+`
+
+
+
+const TextInputVendor = ({placeholder,name,handleChange,value,type,errors}) =>{
 
   return(
-    <>
+    <Container>
+      {
+        errors
+          ?
+        <Error>{errors}</Error>
+        :
+        <div></div>
+      }
       <label htmlFor="search"/>
-      <Input id="search" type="text" autocomplete="off" placeholder={placeholder}/>
-    </>
+      <Input id="search" type={type} onChange={(e)=>handleChange(e)} value={value} autocomplete="off" placeholder={placeholder} name={name}/>
+    </Container>
   )
 }
 

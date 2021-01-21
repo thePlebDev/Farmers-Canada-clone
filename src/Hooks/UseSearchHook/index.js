@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 
 const useSearchHook =(validateFunc)=>{
-    const [state,setState] = useState({search:''})
+    const [state,setState] = useState({search:'',email:'',farm:''})
     const [errors,setErrors] = useState('')
     const [isSubmitting,setIsSubmitting] = useState(false)
 

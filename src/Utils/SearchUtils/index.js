@@ -9,6 +9,16 @@ const SearchUtils =(function(){
         errors.state ="PLEASE ENTER THE STATE"
       }
       return errors
+    },
+    validateVendor:(state)=>{
+      let errors = {}
+      if(!state.farm){
+        errors.farm = "PLEASE ENTER FARM NAME"
+      }
+      if (!state.email) {
+        errors.email ="PLEASE ENTER A VALID EMAIL!"
+      }
+      return errors
     }
   }
 }())
