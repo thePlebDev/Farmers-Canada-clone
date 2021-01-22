@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 import Cards from '../Cards'
+import CustomerBase from '../CustomerBase'
 
 
 const Container = styled.div`
@@ -43,6 +44,7 @@ const SellLocal = ()=>{
           <Text2> Start by createing a listing. It's like a profile page for your Farm.</Text2>
       </TextContainer>
       <Cards/>
+      <CustomerBase/>
     </Container>
   )
 }

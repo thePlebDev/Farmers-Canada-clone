@@ -4,21 +4,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 
-
-const cardsData = [
-  {
-    title:'What is listing?',
-    body:'You will fill out a title, pick a price, and upload photos. Your listing helps customers get a sense of what you produce and how you produce'
-  },
-  {
-    title:'What can you sell?',
-    body:'Sell anything that is locally grown or cultivated by you. Including bakery,eggs,dairy,meat,honey,beverages,CSA basket or even farm tours.'
-  },
-  {
-    title:'How do you get paid?',
-    body:'Just like Farmers Markets, you get paid directly from customers in cash. Offer either Local Pickups or Cash on Delivery to home, restaurants or stores.'
-  },
-]
+import cardsData from './cardData.js'
 
 const Container = styled.div`
   width:80%;
@@ -61,31 +47,29 @@ const IconContainer = styled.div`
 
 
 
-const Cards =()=>{
+const Cards =({})=>{
 
   return(
 
     <Container>
       <div>
-        <IconContainer>
-          <RestaurantIcon style={{fontSize:'40px'}}/>
-        </IconContainer>
+          <RestaurantIcon style={{fontSize:'40px',color:'#29b706'}}/>
         <Title>{cardsData[0].title}</Title>
         <Body>{cardsData[0].body}</Body>
       </div>
 
       <div>
-        <IconContainer>
-          <ShoppingBasketIcon style={{fontSize:'40px'}}/>
-        </IconContainer>
+
+          <ShoppingBasketIcon style={{fontSize:'40px',color:'#29b706'}}/>
+
         <Title>{cardsData[1].title}</Title>
         <Body>{cardsData[1].body}</Body>
       </div>
 
       <div>
-        <IconContainer>
-          <LocalAtmIcon style={{fontSize:'40px'}}/>
-        </IconContainer>
+
+          <LocalAtmIcon style={{fontSize:'40px',color:'#29b706'}}/>
+
         <Title>{cardsData[2].title}</Title>
         <Body>{cardsData[2].body}</Body>
       </div>
