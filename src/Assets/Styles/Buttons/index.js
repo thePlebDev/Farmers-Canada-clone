@@ -29,4 +29,26 @@ const Vendor = styled.div`
   };
 `
 
-export {Vendor}
+const LargeVendor = styled.div`
+  background-color:#9c3;
+  padding: 10px 50px;
+  color:white;
+  font-size:22px;
+  width:200px;
+  margin:30px auto;
+  border-radius:30px;
+  cursor:pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition:0.35s all;
+
+  &:hover{
+      box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+      transform:scale(1.2);
+  }
+
+
+
+`
+
+
+export {Vendor,LargeVendor}

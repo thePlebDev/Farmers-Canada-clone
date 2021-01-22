@@ -2,13 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import CheckIcon from '@material-ui/icons/Check';
 
-import customerInfoData from './data.js';
-
-
-
-
 const Container = styled.div`
-  background-color:#9c3;
+  background-color:${({state})=>state};
+  color:${({color})=>color};
 `
 
 const GridContainer = styled.div`
@@ -33,10 +29,10 @@ const Title = styled.h2`
   width:80%;
   margin:30px auto;
   padding-top:40px;
-  color:white;
+
 `
 const Words = styled.p`
-  color:white;
+
   font-family: "Varela Round";
   line-height:1.6;
   margin-top:0;
@@ -45,23 +41,21 @@ const Words = styled.p`
 `
 const WordContainer = styled.div`
     display:flex;
-
 `
 
-const CustomerBase =()=>{
-
+const CustomerBase =({info,title,backColor,fontColor,children})=>{
 
   return(
-    <Container>
-      <Title> Are You Looking for a Permanent & Strong Customer Base?</Title>
+    <Container state={backColor} color={fontColor}>
+      <Title>{title}</Title>
       <GridContainer>
         {
-          customerInfoData.map((item,index)=>{
+          info.map((item,index)=>{
             return(
             <div key={index}>
 
               <WordContainer>
-                <CheckIcon style={{color:'white'}}/>
+                <CheckIcon style={{color:{fontColor}}}/>
                 <Words>{item.title}</Words>
               </WordContainer>
             </div>
@@ -69,7 +63,7 @@ const CustomerBase =()=>{
           })
         }
       </GridContainer>
-
+        {children}
     </Container>
   )
 }

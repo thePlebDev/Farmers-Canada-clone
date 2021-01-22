@@ -19,5 +19,23 @@ const customerInfoData =[
   },
 ]
 
+const whatYouGetInfo = [
+  {
+    title:'Enter into forever growing online Farmers Market in a minute.'
+  },
+  {
+    title:'Personal profile and store page, communicate directly with customers through Facebook'
+  },
+  {
+    title:'More likes and followers to your Facebook and Instagram profiles.'
+  },
+  {
+    title:'Easy yo use interface, offer your customers what you like.'
+  },
+  {
+    title:'No ads, no promtions and it is all completely free'
+  },
+]
 
-export default customerInfoData
+
+export {customerInfoData,whatYouGetInfo}
