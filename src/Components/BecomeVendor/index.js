@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Landing from './Landing';
 import SellLocal from './SellLocal'
 import FamilyFarmStories from './FamilyFarmStories'
+import FindUs from './FindUs'
 
 
 
@@ -14,6 +15,7 @@ const BecomeVender =()=>{
       <Landing/>
       <SellLocal/>
       <FamilyFarmStories />
+      <FindUs/>
     </>
   )
 }
