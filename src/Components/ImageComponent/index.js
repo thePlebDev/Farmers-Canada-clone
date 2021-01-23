@@ -71,60 +71,26 @@ const FarmName = styled(Text)`
 
 
 const ImageComponent =({grocery})=>{
-  //console.log(grocery)
+  console.log(grocery)
 
   return(
     <>
       <Divider>Fresh Produce</Divider>
       <Container>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
-        <Items>
-          <Image src='https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2125&q=80' alt='vegtable'/>
-          <Text>Spinach</Text>
-          <Money> CA $5.00</Money>
-          <FarmName>Small Farm</FarmName>
-        </Items>
+        {
+          grocery.map((item,index)=>{
+            return (
+              <Items key={index}>
+                <Image src={item.img} alt={item.name}/>
+                <Text>{item.name}</Text>
+                <Money> CA ${item.price}0</Money>
+                <FarmName>Small Farm</FarmName>
+              </Items>
+            )
+
+          })
+        }
+
       </Container>
     </>
   )
