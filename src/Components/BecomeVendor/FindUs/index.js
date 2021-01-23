@@ -13,7 +13,6 @@ const Container = styled.div`
   padding:20px 0;
   border-top:1px solid #333;
   border-bottom:1px solid #333;
-
 `
 
 
@@ -24,6 +23,7 @@ const FindUs =()=>{
 
   return(
     <Container>
+
       <FacebookIcon style={{fontSize:'60px',color:'#3a589d'}}/>
       <InstagramIcon style={{fontSize:'60px',color:'#dd4e31'}}/>
       <TwitterIcon style={{fontSize:'60px',color:'#2478ba'}}/>

@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 
+
 ReactDOM.render(
   <Router>
     <Provider store={store}>

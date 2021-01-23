@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import mobileView from './MobileReducers'
+import groceryReducer from './GroceryReducers'
 
 
 //const rootReducer = combineReducers({reducer1,reducer2})
@@ -8,6 +9,6 @@ import mobileView from './MobileReducers'
 
 //1) make a reducer
 
-const rootReducer = combineReducers({mobileView})
+const rootReducer = combineReducers({mobileView,groceryReducer})
 
 export default rootReducer

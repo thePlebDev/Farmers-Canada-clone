@@ -7,10 +7,8 @@ const mobileView =(state = false,action)=>{
     case "TRUE":
       state = true;
       return state
-
     default:
       return state
-
   }
 }
 
