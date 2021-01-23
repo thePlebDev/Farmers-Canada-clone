@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 
 import SearchForm from '../SearchForm'
-import TextInputLarge from '../TextInputLarge'
+import TextInputLarge from '../TextInputLarge';
+import ImageComponent from '../ImageComponent'
 
 import useSearchHook from '../../Hooks/UseSearchHook'
 import searchUtils from '../../Utils/SearchUtils'
@@ -49,23 +50,31 @@ const Word = styled.div`
     font-size:4rem;
   }
 `
+const NewThingCOntainer = styled.div`
+  background-color:red;
+  width:100%;
+
+`
 
 const Home = ()=>{
   const {state,handleSubmit,handleChange,errors} = useSearchHook(searchUtils.validate)
 
   return(
-    <Container>
-      <Image src="https://images.unsplash.com/photo-1464454709131-ffd692591ee5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80" alt="strawberries" />
-      <SubContainer>
-        <WordContainer>
-            <Word>Fresh local pickups or</Word>
-            <Word>Cash on delivery</Word>
-            <SearchForm handleSubmit={handleSubmit}>
-              <TextInputLarge state={state.search} errors={errors} handleChange={handleChange}/>
-            </SearchForm>
-        </WordContainer>
-      </SubContainer>
-    </Container>
+    <>
+      <Container>
+        <Image src="https://images.unsplash.com/photo-1464454709131-ffd692591ee5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80" alt="strawberries" />
+        <SubContainer>
+          <WordContainer>
+              <Word>Fresh local pickups or</Word>
+              <Word>Cash on delivery</Word>
+              <SearchForm handleSubmit={handleSubmit}>
+                <TextInputLarge state={state.search} errors={errors} handleChange={handleChange}/>
+              </SearchForm>
+          </WordContainer>
+        </SubContainer>
+      </Container>
+      <ImageComponent />
+      </>
   )
 }
 
