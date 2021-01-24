@@ -6,6 +6,7 @@ import Home from '../Home'
 import Register from '../Register'
 import Login from '../Login';
 import BecomeVendor from '../BecomeVendor'
+import IndivGrocery from '../IndivGrocery'
 
 
 const App =()=>{
@@ -18,6 +19,7 @@ const App =()=>{
       <Route exact path='/register' component={Register} />
       <Route exact path='/becomeVendor' component={BecomeVendor} />
       <Route exact path='/login' component={Login} />
+      <Route exact path='/:grocerName' component={IndivGrocery} />
 
     </Switch>
     </>
