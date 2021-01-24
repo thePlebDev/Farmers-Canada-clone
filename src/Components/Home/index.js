@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SearchForm from '../SearchForm'
 import TextInputLarge from '../TextInputLarge';
 import ImageComponent from '../ImageComponent'
+import InfoCard from '../InfoCard';
 
 import useSearchHook from '../../Hooks/UseSearchHook'
 import searchUtils from '../../Utils/SearchUtils'
@@ -74,6 +75,7 @@ const Home = ()=>{
         </SubContainer>
       </Container>
       <ImageComponent />
+      <InfoCard/>
       </>
   )
 }
