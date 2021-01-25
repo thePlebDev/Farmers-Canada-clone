@@ -31,15 +31,15 @@ const Price = styled.div`
   color:#b12704;
 `
 
-const Options = ()=>{
+const Options = ({item})=>{
 
   return(
     <InfoContainer>
-      <Image  alt="food" src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' />
+      <Image  alt={item.name} src={item.img} />
       <TextContainer>
-        <Title>Corn</Title>
-        <Price>CA $2.00</Price>
-        <SelectInput/>
+        <Title>{item.name}</Title>
+        <Price>CA ${item.price}</Price>
+        <SelectInput options={item.sizeOptions}/>
         <AddToCart/>
       </TextContainer>
     </InfoContainer>

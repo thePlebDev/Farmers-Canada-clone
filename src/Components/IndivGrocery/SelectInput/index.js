@@ -26,14 +26,14 @@ const Select = styled.select`
 
 
 
-const SelectInput = ({children})=>{
+const SelectInput = ({options})=>{
 
   return(
     <Container>
       <Quantity>Quantity</Quantity>
       <Select>
         <option defaultValue> Choose an option</option>
-        <option value='1/2 pint'> 1/2 price</option>
+        <option value={1}>{options[0].option} </option>
       </Select>
     </Container>
   )

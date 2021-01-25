@@ -14,11 +14,10 @@ const Container = styled.div`
 
 const IndivGrocery =({currentItem,currentSeller})=>{
 
-
   return(
     <Container>
       <SmallInfo seller={currentSeller}/>
-      <Options/>
+      <Options item={currentItem}/>
       <Pickups/>
     </Container>
   )
