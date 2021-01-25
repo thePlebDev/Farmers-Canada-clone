@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
 
 const Container = styled.div`
   width:60%;
@@ -38,6 +40,13 @@ const ImageItem = styled.div`
   font-size:12px;
   margin:5px;
   text-align:center;
+  cursor:pointer;
+  transition: 0.35s all;
+
+  &:hover{
+    box-shadow:0 2px 20px 0 rgba(0,0,0,0.1);
+    transform:translateY(-2px);
+  }
 `
 
 const ImageContainer = styled.div`
@@ -58,6 +67,7 @@ const Button = styled.button`
   background-color:white;
   box-shadow:0 2px 10px 0 rgba(0,0,0,0.3);
   transition:0.35s all;
+  outline:none;
   &:hover{
     box-shadow:0 2px 30px 0 rgba(0,0,0,0.3);
     transform: scale(1.1);
@@ -67,24 +77,33 @@ const Button = styled.button`
 `
 
 
-const LargeInfo = ()=>{
+const LargeInfo = ({seller})=>{
+  console.log(seller)
 
   return(
     <Container>
-      <H2>Timmothy Collective</H2>
-      <Location>Alberta, Canada</Location>
-      <ImageContainer>
-        <ImageItem>
-          <Image alt="food" src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' />
-          <div>Kale</div>
-        </ImageItem>
+      <H2>{seller.name}</H2>
+      <Location>{seller.location}</Location>
 
-        <ImageItem>
-          <Image alt="food" src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' />
-          <div>Kale</div>
-        </ImageItem>
+      <ImageContainer>
+      {
+        seller.items.map((item,index)=>{
+          return (
+
+              <ImageItem key={index}>
+                <Link to={`${item.sellerId}`} >
+                  <Image alt="food" src={item.img} />
+                  <div style={{color:'black'}}>{item.name}</div>
+                </Link>
+              </ImageItem>
+
+          )
+        })
+      }
       </ImageContainer>
-      <Button>View all</Button>
+        <Link to={`/farm/${seller.name}`}>
+          <Button>View all</Button>
+        </Link>
     </Container>
   )
 }
