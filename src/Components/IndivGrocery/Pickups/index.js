@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Delivery from './Delivery'
-import Local from './Local'
+import Delivery from './Delivery';
+import Local from './Local';
 
 const Container = styled.div`
 text-align:center;

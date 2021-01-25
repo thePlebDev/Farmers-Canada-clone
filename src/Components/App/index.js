@@ -1,12 +1,13 @@
 import React from 'react';
-import {Switch,Route} from 'react-router-dom'
+import {Switch,Route} from 'react-router-dom';
 
-import Navigation from '../Navigation'
-import Home from '../Home'
-import Register from '../Register'
+import Navigation from '../Navigation';
+import Home from '../Home';
+import Register from '../Register';
 import Login from '../Login';
-import BecomeVendor from '../BecomeVendor'
-import IndivGrocery from '../IndivGrocery'
+import BecomeVendor from '../BecomeVendor';
+import IndivGrocery from '../IndivGrocery';
+import FarmName from '../FarmName';
 
 
 const App =()=>{
@@ -20,7 +21,7 @@ const App =()=>{
       <Route exact path='/becomeVendor' component={BecomeVendor} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/:grocerName' component={IndivGrocery} />
-
+      <Route exact path='/farm/:FarmName' component={FarmName} />
     </Switch>
     </>
   )

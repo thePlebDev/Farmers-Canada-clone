@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -66,6 +67,22 @@ const Money = styled(Text)`
 `
 const FarmName = styled(Text)`
   color:#29b706;
+
+
+  &:after{
+    content:'';
+    display:block;
+    width:0px;
+    height:2px;
+    background-color:#29b706;
+    transition: .25s all;
+
+
+  };
+  &:hover::after{
+
+    width:60%;
+  }
 `
 
 
@@ -81,13 +98,16 @@ const ImageComponent =({grocery})=>{
           grocery.map((item,index)=>{
             return (
               <Items key={index}>
-                <Image src={item.img} alt={item.name}/>
-                <Text>{item.name}</Text>
-                <Money> CA ${item.price}0</Money>
-                <FarmName>Small Farm</FarmName>
+                <Link to={`${item.id}`}>
+                  <Image src={item.img} alt={item.name}/>
+                  <Text>{item.name}</Text>
+                  <Money> CA ${item.price}</Money>
+                </Link>
+                <Link to={`/farm/${item.soldBy}`}>
+                  <FarmName>{item.soldBy}</FarmName>
+                </Link>
               </Items>
             )
-
           })
         }
 
