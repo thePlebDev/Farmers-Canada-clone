@@ -6,28 +6,31 @@ import SmallInfo from './SmallInfo'
 import Options from './Options'
 import Pickups from './Pickups'
 
-
 const Container = styled.div`
   border:2px solid red;
 `
 
 
 
-const IndivGrocery =({state})=>{
-  console.log(state)
-  
+const IndivGrocery =({currentItem,currentSeller})=>{
+
+
   return(
     <Container>
-      <SmallInfo/>
+      <SmallInfo seller={currentSeller}/>
       <Options/>
       <Pickups/>
     </Container>
   )
 }
 const mapStateToProps =(state,ownProps)=>{
+  const currentItem = state.groceryReducer.groceries[ownProps.match.params.grocerName]
+  //console.log(currentItem.sellerId)
 
   return{
-    state:state.groceryReducer.groceries[ownProps.match.params.grocerName]
+    currentItem,
+    seller:state.groceryReducer.groceries[ownProps.match.params.grocerName].soldBy,
+    currentSeller:state.sellersReducer.sellers[0][currentItem.sellerId]
   }
 }
 

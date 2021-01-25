@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom'
 
 
 const Container = styled.div`
@@ -33,12 +33,15 @@ const Title = styled.h6`
   font-size:14px;
   font-weight:300;
   opacity:0.7;
+  text-align:center;
 `
+
 const Location = styled.p`
   margin:0 auto;
   color:#333;
   font-weight:300;
   font-size:12px;
+  text-align:center;
 `
 
 const TitleContainer = styled.div`
@@ -76,23 +79,26 @@ const More = styled.span`
 
 
 
-const SmallInfo =()=>{
+const SmallInfo =({seller})=>{
+  //console.log(seller)
+
   return(
     <Container>
       <TextContainer>
-        <Image alt="farm logo" src='https://images.unsplash.com/photo-1549924231-f129b911e442?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'/>
         <TitleContainer>
-          <Title>Easter Valley Grower</Title>
-          <Location> British Columbia, CANADA</Location>
+          <Title>{seller.name}</Title>
+          <Location> {seller.location}</Location>
         </TitleContainer>
       </TextContainer>
       <Connected>
-        <Image src='https://images.unsplash.com/photo-1560963805-6c64417e3413?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1621&q=80' alt="food logo"/>
-        <Image src='https://images.unsplash.com/photo-1560963805-6c64417e3413?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1621&q=80' alt="food logo"/>
-        <ItemsBox>
-          <Number>6</Number>
-          <More>More</More>
-        </ItemsBox>
+        <Image src={seller.items[0].img} alt={seller.items[0].name}/>
+        <Image src={seller.items[1].img} alt={seller.items[1].name}/>
+        <Link to={`/farm/${seller.name}`}>
+          <ItemsBox>
+            <Number>{seller.items.length}</Number>
+            <More>More</More>
+          </ItemsBox>
+        </Link>
       </Connected>
     </Container>
   )
