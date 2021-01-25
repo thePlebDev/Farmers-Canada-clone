@@ -32,7 +32,7 @@ const SelectInput = ({children})=>{
     <Container>
       <Quantity>Quantity</Quantity>
       <Select>
-        <option selected> Choose an option</option>
+        <option defaultValue> Choose an option</option>
         <option value='1/2 pint'> 1/2 price</option>
       </Select>
     </Container>

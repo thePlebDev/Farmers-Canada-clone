@@ -24,9 +24,16 @@ const SoldBy = styled.h5`
 
 `
 
-const Names = styled(SoldBy)`
+const Names = styled.span`
   color:#29b706;
+
+  font-size:14px;
+  font-weight:300px;
+  display:flex;
+  align-items:center;
+  margin:7px;
   margin-left:5px;
+  text-align:center;
 `
 
 
@@ -39,8 +46,7 @@ const Pickups =()=>{
         <Local/>
         <Delivery/>
         <SoldBy>
-        Sold by:
-        <Names>Small Town Farms, Beamsville</Names>
+        Sold by: <Names>Small Town Farms, Beamsville</Names>
 
         </SoldBy>
       </Container>

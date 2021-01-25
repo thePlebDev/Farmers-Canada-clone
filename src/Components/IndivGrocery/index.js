@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import SmallInfo from './SmallInfo'
 import Options from './Options'
@@ -12,7 +13,9 @@ const Container = styled.div`
 
 
 
-const IndivGrocery =()=>{
+const IndivGrocery =({state})=>{
+  console.log(state)
+  
   return(
     <Container>
       <SmallInfo/>
@@ -21,5 +24,13 @@ const IndivGrocery =()=>{
     </Container>
   )
 }
+const mapStateToProps =(state,ownProps)=>{
 
-export default IndivGrocery
+  return{
+    state:state.groceryReducer.groceries[ownProps.match.params.grocerName]
+  }
+}
+
+const ConnectedIndivGrocery = connect(mapStateToProps)(IndivGrocery)
+
+export default ConnectedIndivGrocery
