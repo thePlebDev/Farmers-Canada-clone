@@ -29,6 +29,7 @@ const Text = styled.div`
   color:#333;
   margin:20px 5px;
   line-height:1.6;
+  text-align:start;
 `
 
 

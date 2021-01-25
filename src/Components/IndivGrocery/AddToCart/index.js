@@ -39,8 +39,6 @@ const Number = styled.div`
 
 const AddToCart = ()=>{
 
-
-
   return(
     <Container>
       <IncreaseContainer>

@@ -1,17 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 import Delivery from './Delivery';
 import Local from './Local';
+import Options from '../Options'
 
 const Container = styled.div`
-text-align:center;
+  text-align:center;
+
+  width:90%;
+  margin:10px auto;
 
 `
 const Text = styled.div`
     font-size:13px;
     font-weight:300;
     color:#555;
+    width:90%;
+    margin:10px auto;
+    text-align:start;
 `
 const SoldBy = styled.h5`
   font-size:14px;
@@ -19,8 +27,9 @@ const SoldBy = styled.h5`
   color:#555;
   display:flex;
   align-items:center;
-  margin:7px;
   text-align:center;
+  width:90%;
+  margin:10px auto;
 
 `
 
@@ -38,15 +47,19 @@ const Names = styled.span`
 
 
 
-const Pickups =()=>{
+const Pickups =({farmName,item})=>{
 
   return(
       <Container>
-        <Text>Processing time: Ready to pickup or deliver in one day </Text>
+        <Options item={item}/>
         <Local/>
         <Delivery/>
+        <Text>Processing time: Ready to pickup or deliver in one day </Text>
         <SoldBy>
-        Sold by: <Names>Small Town Farms, Beamsville</Names>
+        Sold by:
+        <Link to={`/farm/${farmName}`}>
+          <Names>{farmName}</Names>
+        </Link>
 
         </SoldBy>
       </Container>

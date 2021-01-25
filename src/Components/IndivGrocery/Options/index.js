@@ -5,16 +5,15 @@ import styled from 'styled-components'
 import SelectInput from '../SelectInput';
 import AddToCart from '../AddToCart'
 
-
-const Image = styled.img`
-    height:198px;
-    width:298px;
-`
 const InfoContainer = styled.div`
 
     display:grid;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
+    width:90%;
+    margin:20px auto;
+    margin-top:0;
+
 `
 const Title = styled.h1`
   font-size:24px;
@@ -35,7 +34,6 @@ const Options = ({item})=>{
 
   return(
     <InfoContainer>
-      <Image  alt={item.name} src={item.img} />
       <TextContainer>
         <Title>{item.name}</Title>
         <Price>CA ${item.price}</Price>

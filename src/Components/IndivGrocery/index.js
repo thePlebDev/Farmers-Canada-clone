@@ -7,19 +7,36 @@ import Options from './Options'
 import Pickups from './Pickups'
 
 const Container = styled.div`
-  border:2px solid red;
+  border:2px solid green;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  justify-content:space-between;
+`
+
+const Image = styled.img`
+    height:168px;
+    width:268px;
+    margin:0 auto;
+    margin-top:20px;
+    @media only screen and (min-width: 760px) {
+    width:300px;
+    height:333px;
+};
 `
 
 
 
 const IndivGrocery =({currentItem,currentSeller})=>{
+  console.log(currentItem)
 
   return(
+    <>
+    <SmallInfo seller={currentSeller}/>
     <Container>
-      <SmallInfo seller={currentSeller}/>
-      <Options item={currentItem}/>
-      <Pickups/>
+      <Image src={currentItem.img} alt={currentItem.name}/>
+      <Pickups farmName={currentSeller.name} item={currentItem}/>
     </Container>
+    </>
   )
 }
 const mapStateToProps =(state,ownProps)=>{

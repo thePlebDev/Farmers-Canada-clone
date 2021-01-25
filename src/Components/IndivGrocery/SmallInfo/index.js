@@ -7,6 +7,10 @@ const Container = styled.div`
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   margin-top:20px;
+  margin-bottom:20px;
+  @media only screen and (min-width: 760px) {
+  display:none;
+}
 `
 
 const TextContainer = styled.div`
