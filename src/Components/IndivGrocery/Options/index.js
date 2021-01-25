@@ -19,6 +19,7 @@ const Title = styled.h1`
   font-size:24px;
   font-weight:400;
   color:black;
+  text-align:start;
 
   postition:relative;
 `
@@ -28,6 +29,7 @@ const TextContainer = styled.div`
 const Price = styled.div`
   font-size:1.15em;
   color:#b12704;
+  text-align:start;
 `
 
 const Options = ({item})=>{

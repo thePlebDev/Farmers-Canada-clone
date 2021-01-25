@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import SmallInfo from './SmallInfo'
+import LargeInfo from './LargeInfo'
 import Options from './Options'
 import Pickups from './Pickups'
 
 const Container = styled.div`
-  border:2px solid green;
+  margin-top:20px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   justify-content:space-between;
@@ -17,7 +18,7 @@ const Image = styled.img`
     height:168px;
     width:268px;
     margin:0 auto;
-    margin-top:20px;
+    margin-top:30px;
     @media only screen and (min-width: 760px) {
     width:300px;
     height:333px;
@@ -27,7 +28,8 @@ const Image = styled.img`
 
 
 const IndivGrocery =({currentItem,currentSeller})=>{
-  console.log(currentItem)
+  // console.log(currentItem)
+  // console.log(currentSeller)
 
   return(
     <>
@@ -35,6 +37,7 @@ const IndivGrocery =({currentItem,currentSeller})=>{
     <Container>
       <Image src={currentItem.img} alt={currentItem.name}/>
       <Pickups farmName={currentSeller.name} item={currentItem}/>
+      <LargeInfo seller={currentSeller}/>
     </Container>
     </>
   )
