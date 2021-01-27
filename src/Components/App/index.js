@@ -21,7 +21,7 @@ const App =()=>{
       <Route exact path='/becomeVendor' component={BecomeVendor} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/:grocerName' component={IndivGrocery} />
-      <Route exact path='/farm/:FarmName' component={FarmName} />
+      <Route exact path='/farm/:farmId/:FarmName' component={FarmName} />
     </Switch>
     </>
   )

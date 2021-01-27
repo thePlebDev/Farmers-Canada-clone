@@ -78,7 +78,7 @@ const Button = styled.button`
 
 
 const LargeInfo = ({seller})=>{
-  console.log(seller)
+  console.log(seller.farmId)
 
   return(
     <Container>
@@ -101,7 +101,7 @@ const LargeInfo = ({seller})=>{
         })
       }
       </ImageContainer>
-        <Link to={`/farm/${seller.name}`}>
+        <Link to={`/farm/${seller.farmId}/${seller.name}`}>
           <Button>View all</Button>
         </Link>
     </Container>

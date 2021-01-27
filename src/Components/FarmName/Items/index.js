@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
 
@@ -54,14 +55,23 @@ const Price = styled.div`
 
 
 
-const Items =()=>{
+const Items =({food})=>{
+  console.log(food)
   return(
     <Container>
-      <ImagesContainer>
-        <Image alt="corn" src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' />
-        <Title>Corn</Title>
-        <Price>CA $2.00</Price>
-      </ImagesContainer>
+      {
+        food.map((item,index)=>{
+          return(
+            <Link key={index} to={`/${item.sellerId}`}>
+              <ImagesContainer>
+                <Image alt={item.name} src={item.img}/>
+                <Title>{item.name}</Title>
+                <Price>CA ${item.price}</Price>
+              </ImagesContainer>
+            </Link>
+          )
+        })
+      }
     </Container>
   )
 }

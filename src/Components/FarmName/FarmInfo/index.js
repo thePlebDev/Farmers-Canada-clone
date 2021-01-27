@@ -63,13 +63,13 @@ const MediaContainer = styled.div`
 
 
 
-const FarmInfo =()=>{
+const FarmInfo =({name,location})=>{
 
   return(
     <Container>
         <InfoContainer>
-            <Title>Timothy collective</Title>
-            <Location>Moncton, New Brunswick</Location>
+            <Title>{name}</Title>
+            <Location>{location}</Location>
             <Contact>
               <ChatContainer><ChatBubbleOutlineIcon/></ChatContainer>
               Contact

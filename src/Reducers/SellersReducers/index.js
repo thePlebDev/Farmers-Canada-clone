@@ -4,6 +4,7 @@ const sellersState ={
       0:{
         name:"Frank Farms",
         location:"Alberta, Canada",
+        farmId:0,
         items:[
         {
           name:'Peas',
@@ -52,6 +53,7 @@ const sellersState ={
     1:{
       name:"Timmothy Collective",
       location:'Moncton, New Brunswick',
+      farmId:1,
       items:[
         {
           name:'Shrimp',
