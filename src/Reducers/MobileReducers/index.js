@@ -10,7 +10,6 @@ const mobileView =(state = initialState, action)=>{
       return {...state,modal:false}
     case "TRUE":
       return {...state,modal:true}
-
     case "OPEN":
       return{...state,cartNav:true}
     case "CLOSE":

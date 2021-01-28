@@ -118,7 +118,16 @@ const ButtonContainer2 = styled.div`
 
 
 
-const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
+const Navigation =({mobileView,trueDispatcher,falseDispatcher,openDispatcher,closeDispatcher})=>{
+  const handleCart =()=>{
+    trueDispatcher()
+    openDispatcher()
+  }
+
+  const handleNav =()=>{
+    closeDispatcher()
+    trueDispatcher()
+  }
 
   return(
     <Container>
@@ -126,7 +135,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
       <Modal state={mobileView} handleClick={falseDispatcher}/>
 
       <Section1Container>
-        <MenuContainer onClick={()=>{trueDispatcher()}}>
+        <MenuContainer onClick={()=>{handleNav()}}>
           <MenuIcon data-testid="nav-toggle"/>
         </MenuContainer>
         <Link to='/'>
@@ -157,7 +166,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
         </ButtonContainer>
 
         <ButtonContainer2>
-          <ShoppingContainer onClick={()=>{trueDispatcher()}}>
+          <ShoppingContainer onClick={()=>{handleCart()}}>
               <ShoppingBasketIcon/>
           </ShoppingContainer>
         </ButtonContainer2>
@@ -169,10 +178,22 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
 }
 
 
-const mapStateToProps =(state)=> ({mobileView:state.mobileView})
+const mapStateToProps =(state)=> {
+
+  return{
+    mobileView:state.mobileView
+  }
+}
+
+
+
+
+
 const mapDispatchToProps ={
   falseDispatcher:mobileViewDispatch.false,
-  trueDispatcher:mobileViewDispatch.true
+  trueDispatcher:mobileViewDispatch.true,
+  openDispatcher:mobileViewDispatch.openCart,
+  closeDispatcher:mobileViewDispatch.closeCart,
 }
 
 

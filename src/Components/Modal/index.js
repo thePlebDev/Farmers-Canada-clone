@@ -60,13 +60,21 @@ const Modal = ({state,handleClick,mobileView,falseDispatcher})=>{
   },[])
 
   return(
-    <Container state={state} ref={node}>
-      <CloseContainer data-testid="close" onClick={()=>handleClick()} state={state}>
+    <Container state={state.modal} ref={node}>
+      <CloseContainer data-testid="close" onClick={()=>handleClick()} state={state.modal}>
         <CloseIcon style={{fontSize:'40px'}}/>
       </CloseContainer>
-      <Nav state={state}>
-        <SearchInput />
-        <PageLinks />
+      <Nav state={state.modal}>
+        {
+          state.cartNav
+               ?
+          <MobileCart/>
+               :
+          <>
+            <SearchInput />
+            <PageLinks />
+          </>
+        }
       </Nav>
     </Container>
   )
