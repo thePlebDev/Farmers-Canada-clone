@@ -132,9 +132,11 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
           <Register>Register</Register>
         </Link>
 
-        <ShoppingContainer>
-            <ShoppingBasketIcon/>
-        </ShoppingContainer>
+        <Link to={'/cart'}>
+          <ShoppingContainer>
+              <ShoppingBasketIcon/>
+          </ShoppingContainer>
+        </Link>
       </Section1Container>
     </Container>
 

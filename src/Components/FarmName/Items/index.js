@@ -41,6 +41,7 @@ const Title = styled.p`
   text-align:center;
   width:80%;
   margin:0px auto;
+  color:#333;
 `
 const Price = styled.div`
 

@@ -8,7 +8,7 @@ import Login from '../Login';
 import BecomeVendor from '../BecomeVendor';
 import IndivGrocery from '../IndivGrocery';
 import FarmName from '../FarmName';
-
+import Cart from '../Cart'
 
 const App =()=>{
 
@@ -20,6 +20,7 @@ const App =()=>{
       <Route exact path='/register' component={Register} />
       <Route exact path='/becomeVendor' component={BecomeVendor} />
       <Route exact path='/login' component={Login} />
+      <Route exact path='/cart' component={Cart} />
       <Route exact path='/:grocerName' component={IndivGrocery} />
       <Route exact path='/farm/:farmId/:FarmName' component={FarmName} />
     </Switch>

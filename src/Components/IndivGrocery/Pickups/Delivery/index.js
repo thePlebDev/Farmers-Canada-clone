@@ -43,8 +43,8 @@ const Delivery =()=>{
       </LocalButton>
       <Text>
         Delivery: Estimated delivery in 1 day
-        Delivery cost: CA$ 10.00 to your adress.
-        Free delivery on orders of CA$ 25.00 or up.
+        Delivery cost: <span style={{color:'#b12704'}}>CA$ 10.00</span> to your adress.
+        Free delivery on orders of <span style={{color:'#b12704'}}>CA$ 25.00</span> or up.
       </Text>
     </Container>
   )

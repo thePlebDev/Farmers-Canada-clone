@@ -1,31 +1,23 @@
 import React from 'react';
 import styled from 'styled-components'
+
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-const Container = styled.div`
-  display:flex;
-  margin-bottom:30px;
-`
 const IncreaseContainer = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
   border:1px solid rgba(0,0,0,0.3);
   padding:2px;
-  border-radius:4pxpx;
+  width:90px;
+  height:30px;
+  margin-top:10px;
+  margin-bottom:10px;
 
 `
-const AddToCartButton = styled.button`
-  margin-left:20px;
-  border-radius:4px;
-  background-color:#d26e4b;
-  color:white;
-  border:none;
-  padding:3px 25px;
-  cursor:pointer;
 
-`
+
 const Number = styled.div`
   border:1px solid rgba(0,0,0,0.3);
   border-top:none;
@@ -37,20 +29,27 @@ const Number = styled.div`
   justify-content:center;
 `
 
+const ButtonContainer = styled.div`
 
-const AddToCart = ()=>{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+`
 
+
+const ItemIncreaseButton =()=>{
   return(
-    <Container>
-      <IncreaseContainer>
-          <RemoveIcon/>
-          <Number>0</Number>
-        <AddIcon/>
-      </IncreaseContainer>
-      <AddToCartButton>Add to Cart</AddToCartButton>
-    </Container>
+    <IncreaseContainer>
+      <ButtonContainer>
+        <RemoveIcon  style={{fontSize:'15px'}}/>
+      </ButtonContainer>
+        <Number>0</Number>
+    <ButtonContainer>
+      <AddIcon style={{fontSize:'15px'}} />
+    </ButtonContainer>
+    </IncreaseContainer>
   )
 }
 
-
-export default AddToCart
+export default ItemIncreaseButton
