@@ -7,7 +7,7 @@ import BuyInfo from './BuyInfo'
 const Container = styled.div`
   width:90%;
   margin:10px auto;
-  border:1px solid #29b706;
+  
   border-radius:4px;
   padding:5px;
   display:grid;

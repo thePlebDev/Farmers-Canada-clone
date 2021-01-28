@@ -2,11 +2,17 @@
 
 const mobileViewDispatch =(function(){
   return{
-    false(){
+    false(){ 
       return {type:'FALSE'}
     },
     true(){
       return {type:"TRUE"}
+    },
+    openCart(){
+      return{type:"OPEN"}
+    },
+    closeCart(){
+      return{type:'CLOSE'}
     }
   }
 }())

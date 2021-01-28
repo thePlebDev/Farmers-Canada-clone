@@ -11,6 +11,7 @@ import searchUtils from '../../Utils/SearchUtils'
 
 const Container = styled.div`
   position:relative;
+  z-index:1;
 
 `
 

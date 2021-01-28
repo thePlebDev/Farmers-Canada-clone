@@ -86,7 +86,6 @@ const ItemContainer =()=>{
                 <Price2> CA$ 4.00 </Price2>
               </PriceContainer>
           </SubContainer>
-
       </Container>
 
     </>

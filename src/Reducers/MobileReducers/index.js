@@ -1,12 +1,20 @@
 
-const mobileView =(state = false,action)=>{
+const initialState ={
+  modal:false,
+  cartNav:false
+}
+
+const mobileView =(state = initialState, action)=>{
   switch(action.type){
     case "FALSE":
-      state = false
-      return state
+      return {...state,modal:false}
     case "TRUE":
-      state = true;
-      return state
+      return {...state,modal:true}
+
+    case "OPEN":
+      return{...state,cartNav:true}
+    case "CLOSE":
+      return {...state,cartNav:false}
     default:
       return state
   }

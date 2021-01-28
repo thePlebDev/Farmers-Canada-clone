@@ -101,6 +101,22 @@ const Register = styled(Button)`
   }
 `
 
+const ButtonContainer = styled.div`
+display:block;
+@media only screen and (max-width: 768px) {
+  display:none
+}
+`
+
+const ButtonContainer2 = styled.div`
+  display:none;
+  @media only screen and (max-width: 768px) {
+    display:block;
+
+  }
+`
+
+
 
 const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
 
@@ -132,11 +148,20 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher})=>{
           <Register>Register</Register>
         </Link>
 
-        <Link to={'/cart'}>
-          <ShoppingContainer>
+        <ButtonContainer>
+            <Link to={'/cart'}>
+              <ShoppingContainer>
+                  <ShoppingBasketIcon/>
+              </ShoppingContainer>
+            </Link>
+        </ButtonContainer>
+
+        <ButtonContainer2>
+          <ShoppingContainer onClick={()=>{trueDispatcher()}}>
               <ShoppingBasketIcon/>
           </ShoppingContainer>
-        </Link>
+        </ButtonContainer2>
+
       </Section1Container>
     </Container>
 
