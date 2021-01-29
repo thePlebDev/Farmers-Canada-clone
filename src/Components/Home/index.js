@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm'
 import TextInputLarge from '../TextInputLarge';
 import ImageComponent from '../ImageComponent'
 import InfoCard from '../InfoCard';
+import SocialMedia from '../SocialMedia'
 
 import useSearchHook from '../../Hooks/UseSearchHook'
 import searchUtils from '../../Utils/SearchUtils'
@@ -77,6 +78,7 @@ const Home = ()=>{
       </Container>
       <ImageComponent />
       <InfoCard/>
+      <SocialMedia/>
       </>
   )
 }
