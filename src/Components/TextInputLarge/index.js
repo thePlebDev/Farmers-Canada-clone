@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search';
+
+import SearchModal from '../SearchModal'
 
 
 const Container = styled.div`
@@ -9,6 +11,9 @@ const Container = styled.div`
   width:80%;
   margin:0 auto;
   display:flex;
+  @media only screen and (max-width: 375px) {
+  width:100%;
+}
 `
 
 const Input = styled.input`
@@ -41,15 +46,33 @@ const SearchButton = styled.button`
 
 
 
-
-
 const TextInputLarge =({state,handleChange,errors})=>{
+  const [show,setShow] = useState(false);
+  const node = useRef(null)
+
+  const handleClick = (e)=>{
+    if(node.current.contains(e.target)){
+      setShow(true)  
+    }else {
+      setShow(false)
+    }
+  }
+
+  useEffect(()=>{
+    document.addEventListener("mousedown",handleClick)
+
+    return ()=>{
+      document.removeEventListener("mousedown",handleClick)
+    }
+
+  },[])
 
   return(
     <Container>
       <label htmlFor='search'/>
-      <Input id="search" value={state} name="search" onChange={(e)=>handleChange(e)} errors={errors} placeholder={'e.g. blueberry, micro greens, Smith'} autocomplete="off"/>
+      <Input id="search" value={state} ref={node} name="search" onChange={(e)=>handleChange(e)} errors={errors} placeholder={'e.g. blueberry, micro greens, Smith'} autocomplete="off"/>
       <SearchButton type="submit"><SearchIcon style={{fontSize:'50px'}}/></SearchButton>
+      <SearchModal show={show}/>
     </Container>
 
   )

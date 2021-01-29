@@ -11,7 +11,7 @@ const Form = styled.form`
 
 const SearchForm =({children,handleSubmit})=>{
   return(
-    <Form onSubmit={(e)=>handleSubmit(e)}>
+    <Form onSubmit={(e)=>handleSubmit(e)} autoComplete="off">
         {children}
     </Form>
 
