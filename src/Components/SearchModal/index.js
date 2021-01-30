@@ -1,6 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+
+import SearchModalItems from '../SearchModalItems'
+import NoSearchFound from './NoSearchFound'
 
 
 const Container = styled.div`
@@ -18,63 +23,34 @@ const Container = styled.div`
   overflow-y:auto;
 
 `
-const ItemContainer = styled.div`
-  margin:10px 0;
-  border-bottom:1px solid rgba(0,0,0,0.2);
-  padding:2px;
-  padding-bottom:10px;
-  display:flex;
-  align-items:center;
-  cursor:pointer;
-
-`
 
 
-const Image = styled.img`
-  width: 40px;
-  height:40px;
-  @media only screen and (min-width: 770px) {
-    width:60px;
-    height:60px;
 
-}
-`
-const TextContainer =styled.div`
-
-`
-
-const Text = styled.div`
-  font-weight:600;
-  color:#333;
-  font-size:11px;
-  margin-left:10px;
-  @media only screen and (min-width: 770px) {
-    font-size:14px;
-
-}
-`
-
-const Text2 = styled(Text)`
-margin-top:5px;
-  color:rgba(0,0,0,0.3);
-  font-weight:300;
-`
-
-
-const SearchModal = ({show})=>{
-
+const SearchModal = ({show,search,changeState,text})=>{
 
   return(
     <Container state={show}>
-      <ItemContainer>
-        <Image alt="corn" src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'/>
-        <TextContainer>
-          <Text>Corn</Text>
-          <Text2>sold by Timmothy collective</Text2>
-        </TextContainer>
-      </ItemContainer>
+      {
+        search[0]
+          ?
+      <SearchModalItems search={search}/>
+        :
+      <NoSearchFound text={text}/>
+
+      }
+
     </Container>
   )
 }
 
-export default SearchModal
+const mapStateToProps = (state) =>{
+  return{
+    search:state.searchReducer.groceries
+  }
+}
+
+
+
+const ConnectedSearchModal = connect(mapStateToProps)(SearchModal)
+
+export default ConnectedSearchModal

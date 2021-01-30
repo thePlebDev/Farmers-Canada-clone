@@ -52,7 +52,7 @@ const TextInputLarge =({state,handleChange,errors})=>{
 
   const handleClick = (e)=>{
     if(node.current.contains(e.target)){
-      setShow(true)  
+      setShow(true)
     }else {
       setShow(false)
     }
@@ -67,12 +67,13 @@ const TextInputLarge =({state,handleChange,errors})=>{
 
   },[])
 
+
   return(
     <Container>
       <label htmlFor='search'/>
-      <Input id="search" value={state} ref={node} name="search" onChange={(e)=>handleChange(e)} errors={errors} placeholder={'e.g. blueberry, micro greens, Smith'} autocomplete="off"/>
+      <Input id="search" value={state} ref={node} name="search" onChange={(e)=>handleChange(e)} errors={errors} placeholder={'Search local farms'} autocomplete="off"/>
       <SearchButton type="submit"><SearchIcon style={{fontSize:'50px'}}/></SearchButton>
-      <SearchModal show={show}/>
+      <SearchModal show={show} changeState={state} text={state}/>
     </Container>
 
   )

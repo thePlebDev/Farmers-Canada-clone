@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import SearchForm from '../SearchForm'
 import TextInputLarge from '../TextInputLarge';
@@ -10,6 +11,7 @@ import About from '../About'
 
 import useSearchHook from '../../Hooks/UseSearchHook'
 import searchUtils from '../../Utils/SearchUtils'
+import searchDispatcher from '../../Dispatchers/SearchDispatcher'
 
 const Container = styled.div`
   position:relative;
@@ -60,8 +62,8 @@ const NewThingCOntainer = styled.div`
 
 `
 
-const Home = ()=>{
-  const {state,handleSubmit,handleChange,errors} = useSearchHook(searchUtils.validate)
+const Home = ({searchDispatcher})=>{
+  const {state,handleSubmit,handleChange,errors} = useSearchHook(searchUtils.validate,searchDispatcher)
 
   return(
     <>
@@ -84,5 +86,10 @@ const Home = ()=>{
       </>
   )
 }
+const mapDispatchToProps ={
+  searchDispatcher:searchDispatcher.filter
+}
 
-export default Home
+const ConnectedHome = connect(null,mapDispatchToProps)(Home)
+
+export default ConnectedHome

@@ -88,7 +88,6 @@ const FarmName = styled(Text)`
 
 
 const ImageComponent =({grocery})=>{
-  console.log(grocery)
 
   return(
     <>

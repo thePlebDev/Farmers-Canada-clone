@@ -3,6 +3,7 @@ import {combineReducers} from 'redux';
 import mobileView from './MobileReducers'
 import groceryReducer from './GroceryReducers'
 import sellersReducer from './SellersReducers'
+import searchReducer from './SearchReducer'
 
 
 //const rootReducer = combineReducers({reducer1,reducer2})
@@ -11,6 +12,6 @@ import sellersReducer from './SellersReducers'
 
 //1) make a reducer
 
-const rootReducer = combineReducers({mobileView,groceryReducer,sellersReducer})
+const rootReducer = combineReducers({mobileView,groceryReducer,sellersReducer,searchReducer})
 
 export default rootReducer

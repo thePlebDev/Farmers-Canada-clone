@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useSearchHook =(validateFunc)=>{
+const useSearchHook =(validateFunc,actionCreator)=>{
     const [state,setState] = useState({search:'',email:'',farm:''})
     const [errors,setErrors] = useState('')
     const [isSubmitting,setIsSubmitting] = useState(false)
@@ -15,6 +15,7 @@ const useSearchHook =(validateFunc)=>{
   const handleChange =(e)=>{
     const {name,value} = e.target
     setState({...state,[name]:value})
+    actionCreator(value)
   }
 
   useEffect(()=>{
