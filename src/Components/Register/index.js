@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import CheckIcon from '@material-ui/icons/Check';
 
+import LoginTextInput from '../LoginTextInput';
+import SearchForm from '../SearchForm';
+
+import useLoginHook from '../../Hooks/UseLoginHook';
+import loginUtils from '../../Utils/LoginUtils';
 
 const Container = styled.div`
-  border:2px solid blue;
   width:100%;
   margin:20px auto;
 `
@@ -31,6 +36,7 @@ const CheckContainer = styled.div`
   display:flex;
   align-items:center;
   margin-top:10px;
+  margin-bottom:10px;
 
 `
 
@@ -39,8 +45,32 @@ const CheckText = styled.div`
   font-weight:300;
 `
 
+const Button = styled.button`
+ background-color:#29b706;
+ border-radius:4px;
+ text-align:center;
+ padding:10px 20px;
+ border:none;
+ width:100px;
+ color:white;
+ font-size:15px;
+ font-weight:500;
+ cursor:pointer;
+`
+
+const TinyText = styled.div`
+  font-size:12px;
+  color:#29b706;
+  font-weight:300;
+  text-align:right;
+  cursor:pointer;
+
+`
+
+
 
 const Register =()=>{
+  const {state,handleChange,errors,handleSubmit} = useLoginHook(loginUtils.validate)
 
 
   return(
@@ -57,8 +87,19 @@ const Register =()=>{
         </CheckContainer>
         <CheckContainer>
           <CheckIcon style={{color:'#29b706'}} />
-          <CheckText>Setup your store in ten minutes</CheckText>
+          <CheckText>Setup your store up in ten minutes</CheckText>
         </CheckContainer>
+
+          <SearchForm handleSubmit={handleSubmit}>
+            <LoginTextInput error={errors.email} label={'Email address'} id="email" type={'text'} name='email' handleChange={handleChange} value={state.email}/>
+            <LoginTextInput error={errors.password} label={'Password'} id='password' type={'password'} name="password" handleChange={handleChange} value={state.password}/>
+            <Button> Register </Button>
+          </SearchForm>
+
+            <Link to='/login'>
+              <TinyText> Already have a store? Login.</TinyText>
+            </Link>
+
       </FormContainer>
     </Container>
   )

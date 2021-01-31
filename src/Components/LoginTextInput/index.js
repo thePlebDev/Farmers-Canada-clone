@@ -16,7 +16,8 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  color:${({state})=>state ? 'red' : 'black'}
+  color:${({state})=>state ? 'red' : 'black'};
+  
 `
 
 

@@ -9,7 +9,7 @@ const loginUtils =(function(){
         errors.email ="please enter an email"
       }
       if(!state.password){
-        errors.password ="please enter an email"
+        errors.password ="please enter an password"
       }
       return errors
     }

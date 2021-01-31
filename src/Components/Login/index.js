@@ -41,6 +41,7 @@ const Button = styled.button`
  color:white;
  font-size:15px;
  font-weight:500;
+ cursor:pointer;
 `
 
 const Lost = styled(Text)`
@@ -83,6 +84,7 @@ const BecomeVendor = styled.div`
 
 const Login =()=>{
   const {state,errors,handleChange,handleSubmit} = useLoginHook(loginUtils.validate)
+  
 
 
   return(
