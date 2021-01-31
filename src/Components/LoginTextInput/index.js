@@ -15,13 +15,17 @@ const Input = styled.input`
   margin-top:0px;
 `
 
+const Label = styled.label`
+  color:${({state})=>state ? 'red' : 'black'}
+`
 
-const LoginTextInput = ({label})=>{
+
+const LoginTextInput = ({label,type,handleChange,value,name,id,error})=>{
 
   return(
     <Container>
-        <label htmlFor="login">{label}</label>
-        <Input id="login" />
+        <Label htmlFor={id} state={error} >{label}</Label>
+        <Input id={id} type={type} onChange={(e)=>handleChange(e)} value={value} name={name}/>
     </Container>
   )
 }

@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import styled from 'styled-components'
 
 import SearchForm from '../SearchForm'
 import LoginTextInput from '../LoginTextInput'
+import useLoginHook from '../../Hooks/UseLoginHook'
+import loginUtils from '../../Utils/LoginUtils'
 
 
 
@@ -80,6 +82,7 @@ const BecomeVendor = styled.div`
 
 
 const Login =()=>{
+  const {state,errors,handleChange,handleSubmit} = useLoginHook(loginUtils.validate)
 
 
   return(
@@ -87,9 +90,9 @@ const Login =()=>{
       <FormContainer>
         <Text>Sign In</Text>
 
-        <SearchForm>
-          <LoginTextInput label={'Username or email address'}/>
-          <LoginTextInput label={'Password'}/>
+        <SearchForm handleSubmit={handleSubmit}>
+          <LoginTextInput label={'Username or email address'} error={errors.email} id={'email'} type={'text'} handleChange={handleChange} value={state.email} name="email"/>
+          <LoginTextInput label={'Password'} type={'password'} error={errors.password} id={'password'} handleChange={handleChange} value={state.password} name={'password'}/>
 
           <Button type="submit" >Sign In</Button>
         </SearchForm>
