@@ -7,11 +7,10 @@ import ItemIncreaseButton from './ItemIncreaseButton'
 
 
 const Container = styled.div`
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(1fr,1fr));
 
-  padding-bottom:10px;
-  padding-top:10px;
+
+  margin-bottom:10px;
+  padding-top:8px;
   border-bottom:1px solid #eee;
 `
 const InfoContainer = styled.div`
@@ -67,23 +66,23 @@ const SubContainer = styled.div`
 
 
 
-const ItemContainer =()=>{
+const ItemContainer =({item})=>{
 
   return(
     <>
       <Container>
         <SubContainer>
               <div style={{display:'flex'}}>
-                <Image alt={'corn'} src='https://images.unsplash.com/photo-1540040920895-4ed39be080b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'/>
+                <Image alt={item.name} src={item.img}/>
                 <InfoContainer>
-                  <Name>Corn</Name>
+                  <Name>{item.name}</Name>
                   <Name>Variant size: 1/2</Name>
                 </InfoContainer>
               </div>
-              <ItemIncreaseButton/>
+              <ItemIncreaseButton amount={item.amount} item={item}/>
               <PriceContainer>
-                <Price>CA$ 4.00</Price>
-                <Price2> CA$ 4.00 </Price2>
+                <Price>CA$ {item.price}.00</Price>
+                <Price2> CA$ {item.price}.00 </Price2>
               </PriceContainer>
           </SubContainer>
       </Container>

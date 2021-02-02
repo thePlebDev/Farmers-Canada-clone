@@ -69,7 +69,7 @@ const BuyInfo =({amount})=>{
 }
 
 const mapStateToProps =(state)=>{
-  //console.log(state.cartReducer)
+  
   return{
     amount:state.cartReducer.amount.finalValue
   }

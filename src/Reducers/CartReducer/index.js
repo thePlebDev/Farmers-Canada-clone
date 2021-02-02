@@ -6,12 +6,12 @@ const cartState ={
       img:'https://images.unsplash.com/photo-1571070703151-4f99fa9cd3b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
       price:2.00,
       id:0,
-      productId:75,
       amount:1,
       sellerId:0,
       sizeOptions: [{option:'1/2 pint'}],
       soldBy:"Frank Farms"
     }
+
   ],
 amount:{finalValue:4.00}
 }
@@ -26,6 +26,7 @@ const cartReducer =(state=cartState,action)=>{
       return {...state,cart,amount}
 
     case "ADD_ITEM":
+    console.log('adding item')
 
     //BELOW SHOULD BE ADDED TO OWN util function
 
@@ -46,6 +47,8 @@ const cartReducer =(state=cartState,action)=>{
     let money = action.payload.item.price * action.payload.amount
     let newMoney = money + state.amount.finalValue
 
+    console.log(money)
+    console.log(newMoney)
 
 
 
