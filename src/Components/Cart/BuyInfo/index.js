@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import Delivery from '../../IndivGrocery/Pickups/Delivery'
 import Local from '../../IndivGrocery/Pickups/Local'
@@ -42,7 +43,7 @@ const Info = styled.h5`
 `
 
 
-const BuyInfo =()=>{
+const BuyInfo =({amount})=>{
 
   return(
     <Container>
@@ -50,14 +51,14 @@ const BuyInfo =()=>{
 
       <InfoContainer>
         <Item>Item(s) total:</Item>
-        <Item2>CA $14.00</Item2>
+        <Item2>CA ${amount}.00</Item2>
       </InfoContainer>
 
       <Info> Processing time: Ready to pickup or deliver in one day </Info>
 
       <InfoContainer>
         <Item>Pickup Order total:</Item>
-        <Item2>CA $14.00</Item2>
+        <Item2>CA ${amount}.00</Item2>
       </InfoContainer>
 
       <Local/>
@@ -67,4 +68,13 @@ const BuyInfo =()=>{
   )
 }
 
-export default BuyInfo
+const mapStateToProps =(state)=>{
+  //console.log(state.cartReducer)
+  return{
+    amount:state.cartReducer.amount.finalValue
+  }
+}
+
+const ConnectedBuyInfo = connect(mapStateToProps)(BuyInfo)
+
+export default ConnectedBuyInfo

@@ -27,10 +27,9 @@ const cartReducer =(state=cartState,action)=>{
 
     case "ADD_ITEM":
 
+    //BELOW SHOULD BE ADDED TO OWN util function
+
       let add = true
-
-
-
       state.cart.map((item,index)=>{
         if(item.id === action.payload.item.id){
           item.amount += action.payload.amount
@@ -44,14 +43,10 @@ const cartReducer =(state=cartState,action)=>{
         state.cart.push({...action.payload.item,amount:action.payload.amount})
       }
 
-    //  console.log(state.amount.finalValue.finalValue)
-    //state.amount.finalValue = money + state.amount.finalValue
-    // console.log(money)
-    // console.log(state.amount.finalValue)
     let money = action.payload.item.price * action.payload.amount
     let newMoney = money + state.amount.finalValue
-    //console.log(newMoney)
-  
+
+
 
 
 
