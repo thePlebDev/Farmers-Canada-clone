@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import SmallInfo from './SmallInfo'
 import LargeInfo from './LargeInfo'
-import Options from './Options'
 import Pickups from './Pickups'
 
 const Container = styled.div`

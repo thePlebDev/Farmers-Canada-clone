@@ -1,7 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components'
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import {connect} from 'react-redux'
+
+import useAddToCart from '../../../Hooks/UseAddToCart'
+import cartDispatcher from '../../../Dispatchers/CartDispatcher'
 
 const Container = styled.div`
   display:flex;
@@ -38,19 +42,26 @@ const Number = styled.div`
 `
 
 
-const AddToCart = ()=>{
+const AddToCart = ({addItem,item})=>{
+  //console.log(item)
+
+  const {state,handleClickNegative,handleClickPositive} = useAddToCart()
 
   return(
     <Container>
       <IncreaseContainer>
-          <RemoveIcon/>
-          <Number>0</Number>
-        <AddIcon/>
+          <RemoveIcon onClick={()=>{handleClickNegative()}} style={{cursor:'pointer'}}/>
+          <Number>{state}</Number>
+        <AddIcon onClick={()=>{handleClickPositive()}} style={{cursor:'pointer'}}/>
       </IncreaseContainer>
-      <AddToCartButton>Add to Cart</AddToCartButton>
+      <AddToCartButton onClick={()=>{addItem(state,item)}}>Add to Cart</AddToCartButton>
     </Container>
   )
 }
 
+const mapDispatchToState ={
+  addItem:cartDispatcher.addItem
+}
 
-export default AddToCart
+const ConnectedAddToCart = connect(null,mapDispatchToState)(AddToCart)
+export default ConnectedAddToCart

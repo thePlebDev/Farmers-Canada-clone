@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import CartItem from './CartItem'
 
@@ -40,19 +42,38 @@ const Button2 = styled(Button)`
   background-color:#E62E04;
 `
 
-const MobileCart =()=>{
+const MobileCart =({cart,amount})=>{
+  //console.log(cart)
 
   return(
     <Container>
       <Title>Cart</Title>
-      <CartItem/>
-      <CartItem/>
-      <CartItem/>
-      <Total>SubTotal: <Number>CA $14.00</Number></Total>
+      {
+        cart
+          ?
+          cart.map((item,index)=>{
+            return(
+              <CartItem key={index} productId={item.productId} name={item.name} img={item.img} option={item.sizeOptions[0].options} farmName={item.soldBy} price={item.price}/>
+            )
+          })
+          :
+          <div>nothing here</div>
+      }
+      <Total>SubTotal: <Number>CA ${amount}.00</Number></Total>
+      <Link to={'/cart'}>
       <Button>View cart</Button>
-      <Button2>Cechkout</Button2>
+      </Link>
     </Container>
   )
 }
 
-export default MobileCart
+const mapStateToProps =(state)=>{
+  return{
+    cart:state.cartReducer.cart,
+    amount:state.cartReducer.amount.finalValue
+  }
+}
+
+const ConnectedMobileCart = connect(mapStateToProps)(MobileCart)
+
+export default ConnectedMobileCart

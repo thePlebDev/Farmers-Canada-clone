@@ -40,7 +40,7 @@ const Options = ({item})=>{
         <Title>{item.name}</Title>
         <Price>CA ${item.price}</Price>
         <SelectInput options={item.sizeOptions}/>
-        <AddToCart/>
+        <AddToCart item={item}/>
       </TextContainer>
     </InfoContainer>
   )
