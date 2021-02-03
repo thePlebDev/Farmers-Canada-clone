@@ -53,7 +53,7 @@ const MobileCart =({cart,amount})=>{
           ?
           cart.map((item,index)=>{
             return(
-              <CartItem key={index} amount={item.amount} productId={item.productId} name={item.name} img={item.img} option={item.sizeOptions[0].options} farmName={item.soldBy} price={item.price}/>
+              <CartItem key={index} amount={item.amount} productId={item.id} name={item.name} img={item.img} option={item.sizeOptions[0].options} farmName={item.soldBy} price={item.price}/>
             )
           })
           :

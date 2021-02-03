@@ -46,6 +46,7 @@ const ButtonContainer = styled.div`
 
 
 const CartItem = ({name,amount,option,price,farmName,img,removeItem,productId})=>{
+  console.log(productId)
 
   return(
     <Container>

@@ -19,9 +19,10 @@ amount:{finalValue:2.00}
 const cartReducer =(state=cartState,action)=>{
   switch(action.type){
     case "REMOVE_ITEM":
-
+      console.log(state.cart)
       //filtering out the what we want removed
-      const cart = state.cart.filter((item,index)=>item.productId !== action.payload.productId)
+      const cart = state.cart.filter((item,index)=>item.id !== action.payload.productId)
+
 
       // total price of items removed
       const priceRemoved = action.payload.amount * action.payload.price
