@@ -9,6 +9,8 @@ import './index.css'
 import Modal from '../Modal';
 import mobileViewDispatch from '../../Dispatchers/MobileView'
 import { Vendor } from '../../Assets/Styles/Buttons'
+import CartDot from './CartDot'
+
 
 
 const Container = styled.div`
@@ -102,6 +104,7 @@ const Register = styled(Button)`
 `
 
 const ButtonContainer = styled.div`
+position:relative;
 display:block;
 @media only screen and (max-width: 768px) {
   display:none
@@ -109,12 +112,14 @@ display:block;
 `
 
 const ButtonContainer2 = styled.div`
+position:relative;
   display:none;
   @media only screen and (max-width: 768px) {
     display:block;
 
   }
 `
+
 
 
 
@@ -161,6 +166,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher,openDispatcher,clo
             <Link to={'/cart'}>
               <ShoppingContainer>
                   <ShoppingBasketIcon/>
+                  <CartDot/>
               </ShoppingContainer>
             </Link>
         </ButtonContainer>
@@ -168,6 +174,7 @@ const Navigation =({mobileView,trueDispatcher,falseDispatcher,openDispatcher,clo
         <ButtonContainer2>
           <ShoppingContainer onClick={()=>{handleCart()}}>
               <ShoppingBasketIcon/>
+              <CartDot/>
           </ShoppingContainer>
         </ButtonContainer2>
 
