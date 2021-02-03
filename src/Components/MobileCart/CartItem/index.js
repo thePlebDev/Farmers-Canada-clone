@@ -45,7 +45,7 @@ const ButtonContainer = styled.div`
 
 
 
-const CartItem = ({name,option,price,farmName,img,removeItem,productId})=>{
+const CartItem = ({name,amount,option,price,farmName,img,removeItem,productId})=>{
 
   return(
     <Container>
@@ -54,9 +54,9 @@ const CartItem = ({name,option,price,farmName,img,removeItem,productId})=>{
         <Info> {name} - {option}</Info>
         <TinyInfo>Sold By:</TinyInfo>
         <TinyInfo>{farmName}</TinyInfo>
-        <TinyInfo>1 x <Number>CA ${price}.00</Number></TinyInfo>
+        <TinyInfo>{amount} x <Number>CA ${price}.00</Number></TinyInfo>
 
-        <ButtonContainer onClick={()=>{removeItem(productId,price)}}>
+        <ButtonContainer onClick={()=>{removeItem(productId,amount,price)}}>
           <CloseIcon style={{color:'#aaa',fontSize:'20px'}}/>
         </ButtonContainer>
       </InfoContainer>

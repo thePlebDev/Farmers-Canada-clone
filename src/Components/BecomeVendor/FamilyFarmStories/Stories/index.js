@@ -56,10 +56,10 @@ const Stories = ()=>{
             <FormatQuoteIcon style={{fontSize:'60px'}}/>
         </IconContainer>
         <Text>Farmers Canada has saved us hundreds of farmers market hours.
-        At this age, we can not run around the city and sell our produce.
-        Finding Farmers Canada was like a gift to us.</Text>
+        At my age, I can not run around the city and sell my produce.
+        Finding Farmers Canada was like a gift to me.</Text>
         <MiniText>
-          <Name>Rob and Susan</Name> from <Profile>Barners Farm</Profile> Elmvale,Ontario
+          <Name>rank</Name> from <Profile>Frank Farms</Profile> Moncton,New Brunswick
         </MiniText>
       </TextContainer>
     </Container>

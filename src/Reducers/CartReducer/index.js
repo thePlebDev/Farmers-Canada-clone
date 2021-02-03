@@ -13,16 +13,26 @@ const cartState ={
     }
 
   ],
-amount:{finalValue:4.00}
+amount:{finalValue:2.00}
 }
 
 const cartReducer =(state=cartState,action)=>{
   switch(action.type){
     case "REMOVE_ITEM":
 
+      //filtering out the what we want removed
       const cart = state.cart.filter((item,index)=>item.productId !== action.payload.productId)
-      let newAmount = state.amount.finalValue - action.payload.amount
+
+      // total price of items removed
+      const priceRemoved = action.payload.amount * action.payload.price
+      console.log(action.payload.amount)
+      console.log(action.payload.price)
+
+      let newAmount = state.amount.finalValue - priceRemoved
       let amount = {finalValue:newAmount}
+
+
+
       return {...state,cart,amount}
 
     case "ADD_ITEM":
