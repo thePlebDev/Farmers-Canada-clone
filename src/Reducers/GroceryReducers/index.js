@@ -53,7 +53,7 @@ const groceryState ={
     {
       name:'Lettuce',
       img:'https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1250&q=80',
-      price:2.50,
+      price:3,
       id:5,
       amount:0,
       sellerId:0,

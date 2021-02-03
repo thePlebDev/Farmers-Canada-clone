@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 
 import SearchForm from '../SearchForm'
@@ -84,7 +84,7 @@ const BecomeVendor = styled.div`
 
 const Login =()=>{
   const {state,errors,handleChange,handleSubmit} = useLoginHook(loginUtils.validate)
-  
+
 
 
   return(

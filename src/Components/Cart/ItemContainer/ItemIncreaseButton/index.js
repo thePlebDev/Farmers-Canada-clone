@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 
 import { connect } from 'react-redux'
 
@@ -20,7 +18,7 @@ const IncreaseContainer = styled.div`
   height:30px;
   margin-top:10px;
   margin-bottom:10px;
-  margin-left:10px;
+  margin:10px auto;
 
 `
 
@@ -36,14 +34,7 @@ const Number = styled.div`
   justify-content:center;
 `
 
-const ButtonContainer = styled.div`
 
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-`
 
 
 const ItemIncreaseButton =({amount,addItem,item})=>{

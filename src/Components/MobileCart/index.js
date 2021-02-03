@@ -38,10 +38,6 @@ const Button = styled.div`
   color:white;
 `
 
-const Button2 = styled(Button)`
-  background-color:#E62E04;
-`
-
 const MobileCart =({cart,amount})=>{
   //console.log(cart)
 

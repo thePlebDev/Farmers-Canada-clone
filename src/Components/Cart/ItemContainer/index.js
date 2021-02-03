@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import CloseIcon from '@material-ui/icons/Close';
+import { connect } from 'react-redux'
 
 import ItemIncreaseButton from './ItemIncreaseButton'
-
+import mobileCartDispatcher from '../../../Dispatchers/MobileCart'
 
 
 
@@ -61,12 +63,20 @@ const SubContainer = styled.div`
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   margin-bottom:20px;
+  position:relative;
+`
+
+const ButtonContainer = styled.div`
+  position:absolute;
+  top:0;
+  right:10px;
+  cursor:pointer;
 `
 
 
 
 
-const ItemContainer =({item})=>{
+const ItemContainer =({item,removeItem})=>{
 
   return(
     <>
@@ -76,7 +86,7 @@ const ItemContainer =({item})=>{
                 <Image alt={item.name} src={item.img}/>
                 <InfoContainer>
                   <Name>{item.name}</Name>
-                  <Name>Variant size: 1/2</Name>
+                  <Name>Size: {item.sizeOptions[0].option}</Name>
                 </InfoContainer>
               </div>
               <ItemIncreaseButton amount={item.amount} item={item}/>
@@ -84,6 +94,9 @@ const ItemContainer =({item})=>{
                 <Price>CA$ {item.price}.00</Price>
                 <Price2> CA$ {item.price}.00 </Price2>
               </PriceContainer>
+              <ButtonContainer onClick={()=>{removeItem(item.id,item.amount,item.price)}}>
+                <CloseIcon style={{color:'red',fontSize:'20px'}}/>
+              </ButtonContainer>
           </SubContainer>
       </Container>
 
@@ -91,6 +104,13 @@ const ItemContainer =({item})=>{
   )
 }
 
+const mapDispatchToProps ={
+  removeItem:mobileCartDispatcher.removeItem
+}
+
+const ConnectedItemContainer = connect(null,mapDispatchToProps)(ItemContainer)
 
 
-export default ItemContainer;
+
+
+export default ConnectedItemContainer;

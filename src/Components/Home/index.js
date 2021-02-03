@@ -56,11 +56,7 @@ const Word = styled.div`
     font-size:4rem;
   }
 `
-const NewThingCOntainer = styled.div`
-  background-color:red;
-  width:100%;
 
-`
 
 const Home = ({searchDispatcher})=>{
   const {state,handleSubmit,handleChange,errors} = useSearchHook(searchUtils.validate,searchDispatcher)

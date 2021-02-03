@@ -11,7 +11,7 @@ const Text = styled.div`
 
 const NoSearchFound =({text})=>{
   return(
-    <Text>No results matched for your query "{text}"</Text>
+    <Text>No results matched for your query </Text>
   )
 }
 

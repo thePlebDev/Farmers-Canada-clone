@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
+
+import styled from 'styled-components';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
@@ -35,19 +36,11 @@ const Body = styled.p`
   margin-bottom:40px;
 `
 
-const IconContainer = styled.div`
-  display:flex;
-  align-self:center;
-  align-items:center;
-  color:#29b706;
-
-
-`
 
 
 
 
-const Cards =({})=>{
+const Cards =()=>{
 
   return(
 

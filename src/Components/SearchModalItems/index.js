@@ -52,7 +52,7 @@ const SearchModalItems = ({search})=>{
   return(
     search.map((item,index)=>{
       return(
-        <Link to={`${item.id}`} key={index}>
+        <Link to={`food/${item.id}`} key={index}>
           <ItemContainer>
             <Image alt={item.name} src={item.img}/>
             <TextContainer>

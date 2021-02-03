@@ -59,7 +59,7 @@ const Stories = ()=>{
         At my age, I can not run around the city and sell my produce.
         Finding Farmers Canada was like a gift to me.</Text>
         <MiniText>
-          <Name>rank</Name> from <Profile>Frank Farms</Profile> Moncton,New Brunswick
+          <Name>Frank</Name> from <Profile>Frank Farms</Profile> Moncton,New Brunswick
         </MiniText>
       </TextContainer>
     </Container>

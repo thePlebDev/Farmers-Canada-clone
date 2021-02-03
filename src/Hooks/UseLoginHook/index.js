@@ -27,7 +27,7 @@ const useLoginHook =(validate)=>{
     }
     setIsSubmitting(false)
 
-  },[state,isSubmitting])
+  },[state,isSubmitting,errors])
 
   return{
     state,

@@ -97,7 +97,7 @@ const ImageComponent =({grocery})=>{
           grocery.map((item,index)=>{
             return (
               <Items key={index}>
-                <Link to={`${item.id}`}>
+                <Link to={`/food/${item.id}`}>
                   <Image src={item.img} alt={item.name}/>
                   <Text>{item.name}</Text>
                   <Money> CA ${item.price}</Money>

@@ -84,7 +84,6 @@ const More = styled.span`
 
 
 const SmallInfo =({seller})=>{
-  //console.log(seller)
 
   return(
     <Container>
@@ -97,7 +96,7 @@ const SmallInfo =({seller})=>{
       <Connected>
         <Image src={seller.items[0].img} alt={seller.items[0].name}/>
         <Image src={seller.items[1].img} alt={seller.items[1].name}/>
-        <Link to={`/farm/${seller.name}`}>
+        <Link to={`/farm/${seller.farmId}/${seller.name}`}>
           <ItemsBox>
             <Number>{seller.items.length}</Number>
             <More>More</More>
