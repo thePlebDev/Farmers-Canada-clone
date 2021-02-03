@@ -43,7 +43,7 @@ const Number = styled.div`
 
 
 const AddToCart = ({addItem,item})=>{
-  //console.log(item)
+
 
   const {state,handleClickNegative,handleClickPositive} = useAddToCart()
 

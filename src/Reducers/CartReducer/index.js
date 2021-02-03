@@ -19,15 +19,12 @@ amount:{finalValue:2.00}
 const cartReducer =(state=cartState,action)=>{
   switch(action.type){
     case "REMOVE_ITEM":
-      console.log(state.cart)
       //filtering out the what we want removed
       const cart = state.cart.filter((item,index)=>item.id !== action.payload.productId)
 
 
       // total price of items removed
       const priceRemoved = action.payload.amount * action.payload.price
-      console.log(action.payload.amount)
-      console.log(action.payload.price)
 
       let newAmount = state.amount.finalValue - priceRemoved
       let amount = {finalValue:newAmount}
@@ -37,9 +34,8 @@ const cartReducer =(state=cartState,action)=>{
       return {...state,cart,amount}
 
     case "ADD_ITEM":
-    console.log('adding item')
 
-    //BELOW SHOULD BE ADDED TO OWN util function
+    //BELOW SHOULD BE ADDED TO  util function
 
       let add = true
       state.cart.map((item,index)=>{
@@ -58,13 +54,6 @@ const cartReducer =(state=cartState,action)=>{
     let money = action.payload.item.price * action.payload.amount
     let newMoney = money + state.amount.finalValue
 
-    console.log(money)
-    console.log(newMoney)
-
-
-
-
-      console.log(state)
 
       return {...state,amount:{finalValue:newMoney}}
     default:

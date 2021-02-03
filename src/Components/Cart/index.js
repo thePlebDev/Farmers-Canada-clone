@@ -30,7 +30,6 @@ border-bottom:1px solid #eee;
 
 
 const Cart =({cart})=>{
-  console.log(cart)
   return(
     <Container>
       <div>

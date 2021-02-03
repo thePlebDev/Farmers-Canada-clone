@@ -10,7 +10,6 @@ const useLoginHook =(validate)=>{
 
   const handleSubmit =(e)=>{
     e.preventDefault()
-    console.log('SUBMITTED')
     setIsSubmitting(true)
     setErrors(validate(state))
   }
@@ -23,7 +22,7 @@ const useLoginHook =(validate)=>{
   useEffect(()=>{
 
     if(isSubmitting && Object.keys(errors).length === 0){
-        console.log('this is where the api call would be')
+        //This is where the API call would go
     }
     setIsSubmitting(false)
 

@@ -78,7 +78,6 @@ const Button = styled.button`
 
 
 const LargeInfo = ({seller})=>{
-  console.log(seller)
 
   return(
     <Container>

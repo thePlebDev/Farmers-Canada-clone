@@ -9,7 +9,6 @@ const useSearchHook =(validateFunc,actionCreator)=>{
     e.preventDefault()
     setErrors(validateFunc(state))
     setIsSubmitting(true)
-    console.log('SUBMITED')
   }
 
   const handleChange =(e)=>{
@@ -20,7 +19,7 @@ const useSearchHook =(validateFunc,actionCreator)=>{
 
   useEffect(()=>{
     if(isSubmitting && Object.keys(errors).length === 0){
-      console.log('this is where the api call will go')
+      //This is where the API call would go
     }
     setIsSubmitting(false)
   },[errors,isSubmitting])

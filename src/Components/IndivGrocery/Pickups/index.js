@@ -48,7 +48,7 @@ const Names = styled.span`
 
 
 const Pickups =({farmName,item})=>{
-  console.log(item)
+
 
   return(
       <Container>
