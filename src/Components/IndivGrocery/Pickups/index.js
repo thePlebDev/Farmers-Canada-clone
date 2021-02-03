@@ -48,6 +48,7 @@ const Names = styled.span`
 
 
 const Pickups =({farmName,item})=>{
+  console.log(item)
 
   return(
       <Container>
@@ -57,7 +58,7 @@ const Pickups =({farmName,item})=>{
         <Text>Processing time: Ready to pickup or deliver in one day </Text>
         <SoldBy>
         Sold by:
-        <Link to={`/farm/${farmName}`}>
+        <Link to={`/farm/${item.sellerId}/${farmName}`}>
           <Names>{farmName}</Names>
         </Link>
 

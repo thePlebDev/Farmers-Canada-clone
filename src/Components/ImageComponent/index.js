@@ -102,7 +102,7 @@ const ImageComponent =({grocery})=>{
                   <Text>{item.name}</Text>
                   <Money> CA ${item.price}</Money>
                 </Link>
-                <Link to={`/farm/${item.soldBy}`}>
+                <Link to={`/farm/${item.sellerId}/${item.soldBy}`}>
                   <FarmName>{item.soldBy}</FarmName>
                 </Link>
               </Items>
