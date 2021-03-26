@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser")
-const MongoClient = require('mongodb').MongoClient
 const mongoose = require('mongoose')
 
 const userRouter = require("./Routes/userRouter")
+const cartRouter = require("./Routes/cartRoutes");
+const productRouter = require("./Routes/productRouters")
+const companyRouter = require("./Routes/companyRouter")
 
 //MAKE SURE THAT THIS GETS CHANGED BEFORE ANYTHING GETS COMMITED
 const conectionString =``
@@ -20,13 +22,12 @@ mongoose.connect(conectionString,{useNewUrlParser: true, useUnifiedTopology: tru
   console.log("CONNECTED TO THE DATABSE")
 });
 
-//get the default connection
-const db = mongoose.connection;
 
-//bind connection to error ever(to get notification of connection errors)
-db.on("error",console.error.bind(console,"MONGODB connection error:"))
-
+//THE ROUTERS
 app.use("/user",userRouter)
+app.use("/cart",cartRouter)
+app.use("/product",productRouter)
+app.use("/company",companyRouter)
 
 
 //THE 404 PAGE NOT FOUND MIDDLEWARE
