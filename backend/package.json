@@ -19,6 +19,7 @@
     "mongod": "^2.0.0",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.2",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "postgresql": "0.0.1"
   }
 }

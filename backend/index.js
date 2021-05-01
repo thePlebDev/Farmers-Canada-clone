@@ -2,13 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const mongoose = require('mongoose')
 
-const userRouter = require("./Routes/userRouter")
-const cartRouter = require("./Routes/cartRoutes");
-const productRouter = require("./Routes/productRouters")
-const companyRouter = require("./Routes/companyRouter")
+const routers = require("./Controllers")
+
 
 //MAKE SURE THAT THIS GETS CHANGED BEFORE ANYTHING GETS COMMITED
-const conectionString =``
+const conectionString =`mongodb+srv://camoSheets:vQFvBxS67LILByJX@cluster0.xgzqn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 //MAKE SURE THAT THIS GET CHANGED BEFORE ANYTHING GETS COMMITTED
 
 
@@ -23,12 +21,7 @@ mongoose.connect(conectionString,{useNewUrlParser: true, useUnifiedTopology: tru
 });
 
 
-//THE ROUTERS
-app.use("/user",userRouter)
-app.use("/cart",cartRouter)
-app.use("/product",productRouter)
-app.use("/company",companyRouter)
-
+app.use('/users',routers.userRouter)
 
 //THE 404 PAGE NOT FOUND MIDDLEWARE
 app.use((req,res)=>{
