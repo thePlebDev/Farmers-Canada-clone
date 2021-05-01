@@ -1,13 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser")
+
+require("dotenv").config();
+
 const mongoose = require('mongoose')
 
 const routers = require("./Controllers")
 
-
-//MAKE SURE THAT THIS GETS CHANGED BEFORE ANYTHING GETS COMMITED
-const conectionString =`mongodb+srv://camoSheets:vQFvBxS67LILByJX@cluster0.xgzqn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-//MAKE SURE THAT THIS GET CHANGED BEFORE ANYTHING GETS COMMITTED
 
 
 const app = express();
@@ -16,7 +15,7 @@ app.use(bodyParser.json());
 
 
 //setting up the default mongoose connection
-mongoose.connect(conectionString,{useNewUrlParser: true, useUnifiedTopology: true},()=>{
+mongoose.connect(process.env.CONNECTIONSTRING,{useNewUrlParser: true, useUnifiedTopology: true},()=>{
   console.log("CONNECTED TO THE DATABSE")
 });
 
@@ -35,6 +34,6 @@ app.use((error,req,res,next)=>{
 
 
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
   console.log("APP STARTED ON PORT 3000")
 })
