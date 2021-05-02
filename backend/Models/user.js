@@ -18,20 +18,12 @@ userSchema.methods.name = function(){
 }
 
 //PRESAVE METHODS TO HASH THE PASSWORD 
-userSchema.pre("save",function(done){
-
-    let user = this;
-    if(!user.isModified("password")){
-        return done();
+userSchema.pre("save",function(next){
+    if(!this.isModified("password")){
+        return next()
     }
-    bcrypt.genSalt(10,function(err,salt){
-        bcrypt.hash(this.username, salt, function(err, hash) {
-            // we hashed the password and then we stored it in the user 
-            if(err){return done(err);}
-            user.password = hashedPassword;
-            done();
-        });
-    })
+    this.password = bcrypt.hashSync(this.password,10);
+    next()
 })
 
 //METHOD TO CHECK THE PASSWORD

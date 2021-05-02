@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const mongoose = require('mongoose')
 
-const routers = require("./Controllers")
+const userRouter = require("./Controllers/Users")
 
 
 
@@ -30,7 +30,7 @@ app.use(session({
  })); 
 
 
-app.use('/users',routers.userRouter)
+app.use('/users',userRouter)
 
 //THE 404 PAGE NOT FOUND MIDDLEWARE
 app.use((req,res)=>{
