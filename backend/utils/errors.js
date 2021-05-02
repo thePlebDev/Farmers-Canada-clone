@@ -8,3 +8,6 @@ class BadRequestError extends Error{
 
 
 module.exports = BadRequestError
+
+// so we make all of our methods async and inside the catch method we go
+// next(new BadRequestError(error)); this will let us reuse our error class
