@@ -10,13 +10,11 @@
 
 - **[Breif Historty of the Internet](#history-of-internet)**<br>
     - [What is HTTP?](#http)
-    - [Getting started with Maven](#getting-started)
+    - [Getting started with Maven](#getting)
     - [Jsoup](#j-soup)
-    - [Installation](#installation)
-    - [Setup](#links)
-    - [Scaping a table](#whats-new)
-    - [Dealing with pagination](#question)
-    - [Conclusion](#license)
+    - [Scaping data from a table](#scaping)
+    - [Disguising your requests](#hidden)
+    - [Conclusion](#final)
     
     
 
@@ -72,7 +70,7 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (
 - Referer : The Referer header contains the URL from which the actual URL has been requested. This header is important because websites use this header to change their behavior based on where the user came from. For example, lots of news websites have a paying subscription and let you view only 10% of a post, but if the user came from a news aggregator like Reddit, they let you view the full content. They use the referer to check this. Sometimes we will have to spoof this header to get to the content we want to extract.
 
 
-## <a name="getting-started">Getting Started</a>
+## <a name="getting">Getting Started</a>
 - To give this project some structure  we are going to use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your terminal.
 ```
 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
@@ -90,4 +88,79 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
     <version>1.14.2</version>
 </dependency>
 ```
-- Before 
+- Make sure to add the code listed above into the dependency list which can be found inside the POM.xml file.
+- Now that we have everything set up we can begin scraping our data.
+
+
+## <a name="scaping">Scaping data from a table</a>
+- When scrapping data from a website, it is always best to be kind an curtious with your scrapping practices. If you make too many requests, you could get your IP banned or even crash the site. You should use web scraping techniques as a last resort, always check if the website you are trying to scrape has an API before you start scaping away.
+- The site that we are going to be scrapping today is a website made specificaly for practicing webscrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice webscraping.
+
+- First lets write a simple code that will return the whole HTML document for us:
+
+```
+Document doc = Jsoup.connect("https://www.javawebscrapingsandbox.com/product").get();
+System.out.println(doc);
+```
+- Once you paste this code into the main function a red line indicating an error will appear, ignore it for the moment. Lets dive a little deeper into the code that we have just written.
+
+- `Document :` a class that is used to represent a HTML document.
+
+- `Jsoup :` The public access point that allows access to the main Jsoup functionality.
+
+- `.connect("") :` creates a new session with the given URL string
+
+- `get() :` executes a get request and returns a HTML document
+
+
+- Now in order to deal with the exception error we are getting we can surround the code with a try/catch blocks
+
+```
+ try {
+     Document doc = Jsoup.connect("https://www.javawebscrapingsandbox.com/product").get();
+
+     System.out.println(doc);
+
+    } catch (IOException e) {
+     // TODO Auto-generated catch block
+     e.printStackTrace();
+    }
+
+```
+- Now when this code is run, it will print out the entire html document that is stored inside the variable of doc. With that done, we can officialy move on to the more complex bit which is scraping the data from the html document inside of doc.
+
+```
+
+ try {
+     Document doc = Jsoup.connect("https://www.javawebscrapingsandbox.com/product").get();
+
+
+     for(Element row: doc.select(
+       "table.ui.celled.table tr"
+       )) {
+
+       final String name = row.select("td:nth-of-type(1)").text();
+       final String url = row.select("td:nth-of-type(2)").text();
+       final String price = row.select("td:nth-of-type(3)").text();
+
+       System.out.println(name +" "+ url +" "+ price);
+     }
+
+    } catch (IOException e) {
+     // TODO Auto-generated catch block
+     e.printStackTrace();
+    }
+
+```
+
+-  As you can tell from the code above, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print out them out together.
+
+`doc.select( "table.ui.celled.table tr" )` : is what gives the list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table that scraping is being done on. Well, that is not entirely true, the actually name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
+
+`final String name = row.select("td:nth-of-type(1)").text();` : this is a demonstration of how to harness the power of CSS selectors. `td` is used to define a standard data cell in an HTML table. `nth-of-type(1)` is the CSS selector that allows the capture of the first coloumn in the table's row. `text()` is used to get the string value from the element that is returned. This process is then repeated with url and price, allowing us to format everything nicely with ` System.out.println(name +" "+ url +" "+ price);`.
+
+## <a name="hidden">Disguising your requests</a>
+
+## <a name="final">Conclusion</a>
+- Webscraping is a powerful tool but with great power comes great responsibilty, remember to be kind and curtious when scraping from a website. If you are interested in taking your webscaping game to the next level then I would highly recommend The Java Web Scraping Handbook which can be found [HERE](https://www.scrapingbee.com/java-webscraping-book/#html-and-the-document-object-model) for FREE!!
+
