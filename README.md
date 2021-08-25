@@ -255,5 +255,8 @@ connection.userAgent("Mozilla")
 
 
 ## <a name="final">Conclusion</a>
+- In the end, I hope I was able to give you a better perspective on the internet as a whole and give you an introduction to webscaping.
+- Thank you for taking time our of your day to read this blog post.
+- May the internet be in your favour.
 
 
