@@ -2,19 +2,23 @@
 
 ![sigmund-yXiLaaYwg_E-unsplash](https://user-images.githubusercontent.com/47083513/130665579-e33f257a-c314-4c24-85e0-3de78ebcf597.jpg)
 
+##Introduction
+- At the best of times, the internet can be a very confusing place. This post will act as a guide to give a better understanding of where the internet came from and how to use web scaping to collect data from a particular site.
+
 
 ## Table of Contents
  
 <!-- TOC -->
 
 
-- **[Breif Historty of the Internet](#history-of-internet)**<br>
-    - [What is HTTP?](#http)
-    - [Getting started with Maven](#getting)
-    - [Jsoup](#j-soup)
-    - [Scaping data from a table](#scaping)
-    - [Disguising your requests](#hidden)
-    - [Conclusion](#final)
+ - [Breif Historty of the Internet](#history-of-internet)
+ - [What is HTTP?](#http)
+ - [Getting started with Maven](#getting)
+ - [Jsoup](#j-soup)
+ - [Scaping data from a table](#scaping)
+ - [Dealing with pagination](#pagination)
+ - [Disguising the requests](#hidden)
+ - [Conclusion](#final)
     
     
 
@@ -22,19 +26,21 @@
 
 
 ## <a name="history-of-internet">Breif Historty of the Internet</a>
-- To be able to fully appreciate the sheer magnatude of what Jsoup is allowing us to do, we need to take a brief tour through the history of the internet. Not including birds and horses, the first real means of communication was the Telegraph.
+- To be able to fully appreciate the sheer magnatude of what Jsoup is allowing us to do, we need to take a brief tour through the history of the internet. Starting at the Telegraph.
 
- ### Telegraph
- - Created in 1844, it is hard to put into words how revolutionary the Telegraph was. Prior to the Telegraph, The United states of America had the famed [Pony Express](https://en.wikipedia.org/wiki/Pony_Express) to deliver information. At it's peak, the Pony Express could devilver information from one side of the United States to the other in 10 days. If you follow the data conversions provided [HERE](https://eager.io/blog/communication-pre-internet/) under the Pony Express section, we get a data transmission rate of about 6 bits per second. Of course this does not include the latency issues that riding horses coast to coast would invoke, so in reality it would be much slower.
-  - When the Telegraph was put into use, data transmistion became almost instant and the death of the Pony Express became definite. The Telegraph  used dots and dashes(simular to binary) to communicate information from one station to another. The first message sent was the incredibly melencoly quote of, `WHAT HATH GOD WROUGHT`, from the supreme court chamber in Washington, D.C, USA to a train station in Baltimore, Maryland, USA.
-
-
- ### ALOHAnet
- - Fast forward to 1971 and at the University of Hawaii ALOHAnet was created, which is argubaly the true grandfather of the internet. Born out of the need for the university to connect all of its campuses and influenced by the geographical hinderance of the campuses all being on different islands. These unique restrictions would ultimately lead to the worlds first wirelessly connected network. The technology an protocols developed for ALOHAnet are still used and influence most of what our modern virtual world runs on. Fun fact, ALOHAnet celebrated its 50th anniversary this year. So make sure to say happy birthday next times you use the internet :) .
+ 
+### Telegraph
+ - Created in 1844, it is hard to put into words how revolutionary the Telegraph was. Prior to the Telegraph, The United states of America had the famed [Pony Express](https://en.wikipedia.org/wiki/Pony_Express) to deliver information. At it's peak, the Pony Express could deliver  information from one side of the United States to the other in 10 days. If you follow the data conversions provided [HERE](https://eager.io/blog/communication-pre-internet/) under the Pony Express section, we get a data transmission rate of about 6 bits per second. Of course this does not include the latency issues that riding horses coast to coast would invoke, so in reality it would be much slower.
+  - When the Telegraph was put into use, data transmission became almost instant and the death of the Pony Express became definite. The Telegraph  used dots and dashes(similar to binary) to communicate information from one station to another. The first message sent was the incredibly melancholy quote of, `WHAT HATH GOD WROUGHT`, from the supreme court chamber in Washington, D.C, USA to a train station in Baltimore, Maryland, USA.
 
 
-### The internet
-- In 1983, fuled by the [Cold War](https://en.wikipedia.org/wiki/Cold_War) we get the invention of the internet. Which at its most simplistic description is just a network of computers that have all agreed to communicate information in the same way. However, the internet was mostly used by researchers, academics and university students to share research material. The internet was essentialy unknown outside of the academic and research communities. The World Wide Web(What you and I think of as the internet) was invented by British scientist Tim Berners-Lee in 1989 while working at CERN. When we type in `WWW` into our browser, we are using the World Wide Web. Now, it is important to point out that the internet and the World Wide Web are two completly different things. The internet is the underlying technological infastructure that we use to send information from one computer to another. The World Wide Web is a collection of connected web servers that have specified locations that we can access to get stored information. A common anology is that roads are the internet, while cars and shops are the World Wide Web.
+
+### ALOHAnet 
+ - Fast forward to 1971 and at the University of Hawaii ALOHAnet was created, arguably the true grandfather of the internet. Born out of the need for the university to connect all of its campuses and influenced by the geographical hinderance of the campuses all being on different islands. These unique restrictions would ultimately lead to the world's first wirelessly connected network. The technology and protocols developed for ALOHAnet are still used and influence most of what our modern virtual world runs on. Fun fact, ALOHAnet celebrated its 50th anniversary this year. So make sure to say happy birthday next times you use the internet :) .
+
+
+### The Internet
+- In 1983, fueled by the [Cold War](https://en.wikipedia.org/wiki/Cold_War) was the invention of the internet. Which at its most simplistic description is just a network of computers that have all agreed to communicate information in the same way. However, the internet was mostly used by researchers, academics and university students to share research material. The internet was essentially unknown outside of the academic and research communities. The World Wide Web(What you and I think of as the internet) was invented by British scientist Tim Berners-Lee in 1989 while working at CERN. When we type in `WWW` into our browser, we are using the World Wide Web. Now, it is important to point out that the internet and the World Wide Web are two completely different things. The internet is the underlying technological infrastructure that we use to send information from one computer to another. The World Wide Web is a collection of connected web servers that have specified locations that we can access to get stored information. A common analogy is that roads are the internet, while cars and shops are the World Wide Web.
 
 
 ## <a name="http">What is HTTP</a>
@@ -71,16 +77,16 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (
 
 
 ## <a name="getting">Getting Started</a>
-- To give this project some structure  we are going to use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your terminal.
+- To give this project some structure we are going to use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your console.
 ```
 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-- This assumes that you already have Maven installed on you machine. If you do not have Maven installed then please visit this this link [HERE](https://books.sonatype.com/mvnref-book/reference/installation.html) and follow the instructions to download maven. 
+- This assumes that you already have Maven installed on your local machine. If you do not have Maven installed then please visit this the link [HERE](https://books.sonatype.com/mvnref-book/reference/installation.html) and follow the instructions to download maven. 
 
 
 ## <a name="j-soup">Jsoup</a>
--  If you are unfamiliar with Jsoup, it is a Java library for working with real-world HTML. It provides a very convient API for fetching ULRs and extracting and manipulating data. To add Jsoup to our project we need to add the Maven dependency for it, which can be found below:
+-  If you are unfamiliar with Jsoup, it is a Java library for working with real-world HTML. It provides a very convenient API for fetching ULRs, extracting and manipulating data. To add Jsoup to our project we need to add the Maven dependency for it, which can be found below:
 ```
 <dependency>
     <groupId>org.jsoup</groupId>
@@ -93,8 +99,8 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 
 
 ## <a name="scaping">Scaping data from a table</a>
-- When scrapping data from a website, it is always best to be kind an curtious with your scrapping practices. If you make too many requests, you could get your IP banned or even crash the site. You should use web scraping techniques as a last resort, always check if the website you are trying to scrape has an API before you start scaping away.
-- The site that we are going to be scrapping today is a website made specificaly for practicing webscrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice webscraping.
+- When scrapping data from a website, it is always best to be kind an courteous with your scrapping practices. If you make too many requests, you could get your IP banned or even crash the site. You should use web scraping techniques as a last resort, always check if the website you are trying to scrape has an API before you start scaping.
+- The site that we are going to be scrapping today is a website made specifically for practicing web scrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice web scraping.
 
 - First lets write a simple code that will return the whole HTML document for us:
 
@@ -127,7 +133,7 @@ System.out.println(doc);
     }
 
 ```
-- Now when this code is run, it will print out the entire html document that is stored inside the variable of doc. With that done, we can officialy move on to the more complex bit which is scraping the data from the html document inside of doc.
+- Now when this code runs, it will print out the entire html document that is stored inside the variable of doc. With that done, we can officially move on to the more complex bit which is scraping the data from the html document inside of doc.
 
 ```
 
@@ -155,12 +161,99 @@ System.out.println(doc);
 
 -  As you can tell from the code above, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print out them out together.
 
-`doc.select( "table.ui.celled.table tr" )` : is what gives the list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table that scraping is being done on. Well, that is not entirely true, the actually name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
+`doc.select( "table.ui.celled.table tr" )` : is what gives the list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table that scraping is being done on. That is not entirely true, the actually name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
 
-`final String name = row.select("td:nth-of-type(1)").text();` : this is a demonstration of how to harness the power of CSS selectors. `td` is used to define a standard data cell in an HTML table. `nth-of-type(1)` is the CSS selector that allows the capture of the first coloumn in the table's row. `text()` is used to get the string value from the element that is returned. This process is then repeated with url and price, allowing us to format everything nicely with ` System.out.println(name +" "+ url +" "+ price);`.
+`final String name = row.select("td:nth-of-type(1)").text();` : this is a demonstration of how to harness the power of CSS selectors. `td` is used to define a standard data cell in an HTML table. `nth-of-type(1)` is the CSS selector that allows the capture of the first column in the table's row. `text()` is used to get the string value from the element that is returned. This process is then repeated with url and price, allowing us to format everything nicely with ` System.out.println(name +" "+ url +" "+ price);`.
 
-## <a name="hidden">Disguising your requests</a>
+## <a name="pagination">Dealing with pagination</a>
+- In web scrapping a common task you will come up against is dealing with pagination(extra pages).This section will show you one way of how to deal with pagination. Now, of course you can deal with pagination any way you seem fit and what works for one site will not work for another. However, the code in this section offers an easy and intuitive solution for dealing with the pagination presented to us today.
+```
+PICTURE OF THE TABLE WE ARE GOING TO SCRAPE
+```
+- as you can see from the picture above we are going to be using the right arrow at the bottom of the table to tell us when we have  gotten to the end of the table results. Essentially all it comes down to is checking if there is a right arrow, if there is then the bot continues to scrape, if there isn't, then the bot stops.
+- To eliminate code resuse, create a new class in the maven project and call it `Scraper`, paste the code below:
+```
+public class Scraper {
+private Document doc;
+	
+	public Scraper(Document doc) {
+		this.doc = doc;
+	}
+	
+    public void scrape() {
+			
+			for(Element row: doc.select(
+					"table.ui.celled.table tr"
+					)) {
+				
+					final String name = row.select("td:nth-of-type(1)").text();
+				    final String url = row.select("td:nth-of-type(2)").text();
+					final String price = row.select("td:nth-of-type(3)").text();
+					
+					System.out.println(name +" "+ url +" "+ price);
+			}	
+    }
+
+}
+```
+
+- The code above is exactly the same as our previous code, except for the private member variable `private Document doc;`. It will be used to hold the document that will be scrapped.
+- The next step is to create a new class and paste the code below into the main method.
+
+```
+public static void main(String[] args) {
+		
+		try {
+			int urlNum = 1;
+			
+			
+			while(true) {
+				
+				String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);
+				Connection connection = Jsoup.connect(urlString);
+
+				
+			Document doc = connection.get();
+			Scraper scraping = new Scraper(doc);
+
+				
+				Elements data = doc.select("i.right.chevron.icon");
+				
+				if(data.hasClass("right chevron icon")) {
+					System.out.println(urlNum);
+					
+					//how we scrape
+					scraping.scrape();
+					
+					urlNum ++;
+					
+				}else {
+					scraping.scrape();
+					System.out.println("NOTHING FOUND");
+					break;
+				}
+				
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+	}
+```
+- The code above is fairly straight forward. The key to it is the while loop, this allows our bot to continously make requests with `String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);` and then scrape that the data that is returned with `Scrapper scrapping = new Scrapper(doc);`(the previous class we just created). `Elements data = doc.select("i.right.chevron.icon");` is how what is used to get the right arrow. `if(data.hasClass("right chevron icon")){}` is used to check if there is a right arrow on the screen, if there isn't then that means our bot has entered the last page and to enter the else block. `scraping.scrape();` is used to scrape the last page, lastly printing out `NOTHING FOUND` and breaking out of the while loop.
+
+
+## <a name="hidden">Disguising the requests</a>
+-For various reasons it is best to make web scraping bots seem as close to natural interactions as possible. The most obvious reason is to avoid anti-bot mechanisms that some websites implement. The two methods that this bot is going to emply is adding a `User-agent` and space the time between our requests.
+```
+Thread.sleep(2000);
+connection.userAgent("Mozilla")
+```
+- Just make sure that these two pieces of code are inside of the while loop and before the call to `Elements data = doc.select("i.right.chevron.icon");`.  The sleep() method causes the current thread to suspend execution for two senconds, which makes our bot lool a little more human. This code works because the code we are writing is small, but if you are making something that is multithreaded, then the sleep() method should not be called on the main thread. `userAgent("Mozilla")` is used to set the request user-agent header and make the request seem more natural. If you want to learn more about how to hide your bots actions you can find more information [HERE](https://www.scrapingbee.com/java-webscraping-book/#6-stay-under-cover).
+
 
 ## <a name="final">Conclusion</a>
-- Webscraping is a powerful tool but with great power comes great responsibilty, remember to be kind and curtious when scraping from a website. If you are interested in taking your webscaping game to the next level then I would highly recommend The Java Web Scraping Handbook which can be found [HERE](https://www.scrapingbee.com/java-webscraping-book/#html-and-the-document-object-model) for FREE!!
+
 
