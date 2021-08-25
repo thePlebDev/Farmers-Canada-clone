@@ -246,7 +246,7 @@ public static void main(String[] args) {
 
 
 ## <a name="hidden">Disguising the requests</a>
--For various reasons it is best to make web scraping bots seem as close to natural interactions as possible. The most obvious reason is to avoid anti-bot mechanisms that some websites implement. The two methods that this bot is going to emply is adding a `User-agent` and space the time between our requests.
+- For various reasons it is best to make web scraping bots seem as close to natural interactions as possible. The most obvious reason is to avoid anti-bot mechanisms that some websites implement. The two methods that this bot is going to emply is adding a `User-agent` and space the time between our requests.
 ```
 Thread.sleep(2000);
 connection.userAgent("Mozilla")
