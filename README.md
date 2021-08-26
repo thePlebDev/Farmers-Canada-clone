@@ -1,5 +1,8 @@
 # Webscraping with Java in Jsoup
 
+<!---
+titlePictureSoup
+-->
 ![sigmund-yXiLaaYwg_E-unsplash](https://user-images.githubusercontent.com/47083513/130665579-e33f257a-c314-4c24-85e0-3de78ebcf597.jpg)
 
 ## Introduction
@@ -48,7 +51,7 @@
   
       1) The client opens a TCP connection(ensures proper data transmission) to the server on port 80,by default; other ports may be specified in the URL.
       
-      2) The client sends a message to the server requestiong the resource at a specified path. The request includes a header, and depending on the request, data for the request.
+      2) The client sends a message to the server requesting the resource at a specified path. The request includes a header, and depending on the request, data for the request.
       
       3) The server send a response to the client. The response contains the appropriate data for the request.
       
@@ -103,7 +106,9 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 - The site that we are going to be scrapping today is a website made specifically for practicing web scrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice web scraping.
 
 ### The table that we will be scraping from:
-
+<!---
+ ScrapingDataFromTable
+-->
 <img width="1127" alt="ScrapingDataFromTable" src="https://user-images.githubusercontent.com/47083513/131031242-781738b3-0dc3-4bc1-ac24-dee11df973b0.png">
 
 
@@ -172,6 +177,10 @@ System.out.println(doc);
 
 ## <a name="pagination">Dealing with pagination</a>
 - In web scraping a common task you will come up against is dealing with pagination(extra pages).This section will show you one way of how to deal with pagination. Now, of course you can deal with pagination any way you seem fit and what works for one site may not work for another. However, the code in this section offers an easy and intuitive solution for dealing with the pagination presented to us today.
+<!---
+ PaginationFirst
+ PaginationLast
+-->
 
 <img width="1145" alt="PaginationFirstpng" src="https://user-images.githubusercontent.com/47083513/131031468-78c74217-ab41-4ac9-98bb-3c856ecae4fd.png">
 
@@ -179,7 +188,7 @@ System.out.println(doc);
 
 
 - As you can see from the pictures above the main focus for the code will be the arrows highlighted in red. Essentially all it comes down to checking if there is a right arrow. If the arrow does not exist then the code knows to stop scraping.
-- To eliminate code resuse, create a new class in the maven project and call it `Scraper`, paste the code below:
+- To eliminate code reuse, create a new class in the maven project and call it `Scraper`, paste the code below:
 ```
 public class Scraper {
 private Document doc;
@@ -264,7 +273,7 @@ connection.userAgent("Mozilla")
 
 
 ## <a name="final">Conclusion</a>
-- The internet and web scraping are two increadly powerful things. However, you must always remember to be curtious of the pages you are scraping and mindful of how many requests you send to a server. 
+- The internet and web scraping are two incredibly powerful things. However, you must always remember to be courteous of the pages you are scraping and mindful of how many requests you send to a server. 
 - Thank you and may the internet be ever in your favour.
 
 
