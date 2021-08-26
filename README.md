@@ -2,8 +2,8 @@
 
 ![sigmund-yXiLaaYwg_E-unsplash](https://user-images.githubusercontent.com/47083513/130665579-e33f257a-c314-4c24-85e0-3de78ebcf597.jpg)
 
-##Introduction
-- At the best of times, the internet can be a very confusing place. This post will act as a guide to give a better understanding of where the internet came from and how to use web scaping to collect data from a particular site.
+## Introduction
+- At the best of times, the internet can be a very confusing place. This post will act as a guide to give a better understanding of where the internet came from and how to utilize Jsoup to harness its awesome power.
 
 
 ## Table of Contents
@@ -77,16 +77,16 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (
 
 
 ## <a name="getting">Getting Started</a>
-- To give this project some structure we are going to use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your console.
+- To give this project some structure use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your console.
 ```
 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-- This assumes that you already have Maven installed on your local machine. If you do not have Maven installed then please visit this the link [HERE](https://books.sonatype.com/mvnref-book/reference/installation.html) and follow the instructions to download maven. 
+- This assumes that you already have Maven installed on your local machine. If you do not have Maven installed then please visit this the link [HERE](https://books.sonatype.com/mvnref-book/reference/installation.html) and follow the instructions to download maven.
 
 
 ## <a name="j-soup">Jsoup</a>
--  If you are unfamiliar with Jsoup, it is a Java library for working with real-world HTML. It provides a very convenient API for fetching ULRs, extracting and manipulating data. To add Jsoup to our project we need to add the Maven dependency for it, which can be found below:
+-  If you are unfamiliar with Jsoup, it is a Java library for working with real-world HTML. It provides a very convenient API for fetching ULRs, extracting and manipulating data. To add Jsoup to the project  add the Maven dependency for it, which can be found below:
 ```
 <dependency>
     <groupId>org.jsoup</groupId>
@@ -95,12 +95,17 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 </dependency>
 ```
 - Make sure to add the code listed above into the dependency list which can be found inside the POM.xml file.
-- Now that we have everything set up we can begin scraping our data.
+- Now that  everything set up we can begin scraping our data.
 
 
 ## <a name="scaping">Scaping data from a table</a>
 - When scrapping data from a website, it is always best to be kind an courteous with your scrapping practices. If you make too many requests, you could get your IP banned or even crash the site. You should use web scraping techniques as a last resort, always check if the website you are trying to scrape has an API before you start scaping.
 - The site that we are going to be scrapping today is a website made specifically for practicing web scrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice web scraping.
+
+### The table that we will be scraping from:
+
+<img width="1127" alt="ScrapingDataFromTable" src="https://user-images.githubusercontent.com/47083513/131031242-781738b3-0dc3-4bc1-ac24-dee11df973b0.png">
+
 
 - First lets write a simple code that will return the whole HTML document for us:
 
@@ -108,7 +113,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 Document doc = Jsoup.connect("https://www.javawebscrapingsandbox.com/product").get();
 System.out.println(doc);
 ```
-- Once you paste this code into the main function a red line indicating an error will appear, ignore it for the moment. Lets dive a little deeper into the code that we have just written.
+- Once you paste this code into the main function a red line indicating an error will appear, ignore it for the moment. Lets dive a little deeper into the code that was just written.
 
 - `Document :` a class that is used to represent a HTML document.
 
@@ -119,7 +124,7 @@ System.out.println(doc);
 - `get() :` executes a get request and returns a HTML document
 
 
-- Now in order to deal with the exception error we are getting we can surround the code with a try/catch blocks
+- Now in order to deal with the exception error  surround the code with a try/catch blocks
 
 ```
  try {
@@ -133,7 +138,7 @@ System.out.println(doc);
     }
 
 ```
-- Now when this code runs, it will print out the entire html document that is stored inside the variable of doc. With that done, we can officially move on to the more complex bit which is scraping the data from the html document inside of doc.
+- Now when this code runs, it will print out the entire html document that is stored inside the variable of doc. With that done, move on to the more complex bit, which is scraping the data from the html document inside of doc.
 
 ```
 
@@ -159,18 +164,21 @@ System.out.println(doc);
 
 ```
 
--  As you can tell from the code above, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print out them out together.
+-  As you can tell from the code above, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print them out together.
 
-`doc.select( "table.ui.celled.table tr" )` : is what gives the list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table that scraping is being done on. That is not entirely true, the actually name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
+`doc.select( "table.ui.celled.table tr" )` : is what gives the code a list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table. That is not entirely true, the actual name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
 
 `final String name = row.select("td:nth-of-type(1)").text();` : this is a demonstration of how to harness the power of CSS selectors. `td` is used to define a standard data cell in an HTML table. `nth-of-type(1)` is the CSS selector that allows the capture of the first column in the table's row. `text()` is used to get the string value from the element that is returned. This process is then repeated with url and price, allowing us to format everything nicely with ` System.out.println(name +" "+ url +" "+ price);`.
 
 ## <a name="pagination">Dealing with pagination</a>
-- In web scrapping a common task you will come up against is dealing with pagination(extra pages).This section will show you one way of how to deal with pagination. Now, of course you can deal with pagination any way you seem fit and what works for one site will not work for another. However, the code in this section offers an easy and intuitive solution for dealing with the pagination presented to us today.
-```
-PICTURE OF THE TABLE WE ARE GOING TO SCRAPE
-```
-- as you can see from the picture above we are going to be using the right arrow at the bottom of the table to tell us when we have  gotten to the end of the table results. Essentially all it comes down to is checking if there is a right arrow, if there is then the bot continues to scrape, if there isn't, then the bot stops.
+- In web scraping a common task you will come up against is dealing with pagination(extra pages).This section will show you one way of how to deal with pagination. Now, of course you can deal with pagination any way you seem fit and what works for one site may not work for another. However, the code in this section offers an easy and intuitive solution for dealing with the pagination presented to us today.
+
+<img width="1145" alt="PaginationFirstpng" src="https://user-images.githubusercontent.com/47083513/131031468-78c74217-ab41-4ac9-98bb-3c856ecae4fd.png">
+
+<img width="1151" alt="PaginationLast" src="https://user-images.githubusercontent.com/47083513/131031749-cb84fcea-b767-40c9-bd32-5e6e82b34d5f.png">
+
+
+- As you can see from the pictures above the main focus for the code will be the arrows highlighted in red. Essentially all it comes down to checking if there is a right arrow. If the arrow does not exist then the code knows to stop scraping.
 - To eliminate code resuse, create a new class in the maven project and call it `Scraper`, paste the code below:
 ```
 public class Scraper {
@@ -197,7 +205,8 @@ private Document doc;
 }
 ```
 
-- The code above is exactly the same as our previous code, except for the private member variable `private Document doc;`. It will be used to hold the document that will be scrapped.
+- The code above is exactly the same as the previous code, except for the private member variable `private Document doc;`. It will be used to hold the document that will be scraped.
+
 - The next step is to create a new class and paste the code below into the main method.
 
 ```
@@ -229,7 +238,7 @@ public static void main(String[] args) {
 					
 				}else {
 					scraping.scrape();
-					System.out.println("NOTHING FOUND");
+					System.out.println("End of pages");
 					break;
 				}
 				
@@ -242,21 +251,20 @@ public static void main(String[] args) {
 		
 	}
 ```
-- The code above is fairly straight forward. The key to it is the while loop, this allows our bot to continously make requests with `String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);` and then scrape that the data that is returned with `Scrapper scrapping = new Scrapper(doc);`(the previous class we just created). `Elements data = doc.select("i.right.chevron.icon");` is how what is used to get the right arrow. `if(data.hasClass("right chevron icon")){}` is used to check if there is a right arrow on the screen, if there isn't then that means our bot has entered the last page and to enter the else block. `scraping.scrape();` is used to scrape the last page, lastly printing out `NOTHING FOUND` and breaking out of the while loop.
+- The code above is fairly straight forward. Notice the while loop, this allows our bot to continously make requests with `String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);` and then scrape that the data that is returned with `Scraper scraping = new Scraper(doc);`(the previous class created). `Elements data = doc.select("i.right.chevron.icon");` is used to get the right arrow. `if(data.hasClass("right chevron icon")){}` is used to check if if data has a Element with the class of `right chevron icon` , if there isn't then that means the bot has entered the last page and to enter the else block. `scraping.scrape();` is used to scrape the last page, lastly printing out `End of pages` and breaking out of the while loop.
 
 
 ## <a name="hidden">Disguising the requests</a>
-- For various reasons it is best to make web scraping bots seem as close to natural interactions as possible. The most obvious reason is to avoid anti-bot mechanisms that some websites implement. The two methods that this bot is going to emply is adding a `User-agent` and space the time between our requests.
+- For various reasons it is best to make web scraping bots seem as close to natural interactions as possible. The most obvious reason is to avoid anti-bot mechanisms that some websites implement. The two methods that this bot is going to employ are adding a `User-agent` and space the time between our requests.
 ```
 Thread.sleep(2000);
 connection.userAgent("Mozilla")
 ```
-- Just make sure that these two pieces of code are inside of the while loop and before the call to `Elements data = doc.select("i.right.chevron.icon");`.  The sleep() method causes the current thread to suspend execution for two senconds, which makes our bot lool a little more human. This code works because the code we are writing is small, but if you are making something that is multithreaded, then the sleep() method should not be called on the main thread. `userAgent("Mozilla")` is used to set the request user-agent header and make the request seem more natural. If you want to learn more about how to hide your bots actions you can find more information [HERE](https://www.scrapingbee.com/java-webscraping-book/#6-stay-under-cover).
+- Just make sure that these two pieces of code are inside of the while loop and before the call to `Elements data = doc.select("i.right.chevron.icon");`.  The sleep() method causes the current thread to suspend execution for two senconds, which makes our bot look a little more human. This code works because the code we are writing is small, but if you are making something that is multithreaded, then the sleep() method should not be called on the main thread. `userAgent("Mozilla")` is used to set the request user-agent header and make the request seem more natural. If you want to learn more about how to hide your bots actions you can find more information [HERE](https://www.scrapingbee.com/java-webscraping-book/#6-stay-under-cover).
 
 
 ## <a name="final">Conclusion</a>
-- In the end, I hope I was able to give you a better perspective on the internet as a whole and give you an introduction to web scaping.
-- Thank you for taking time our of your day to read this blog post.
-- May the internet be ever in your favour.
+- The internet and web scraping are two increadly powerful things. However, you must always remember to be curtious of the pages you are scraping and mindful of how many requests you send to a server. 
+- Thank you and may the internet be ever in your favour.
 
 
