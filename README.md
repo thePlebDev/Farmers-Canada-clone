@@ -6,21 +6,20 @@ titlePictureSoup
 ![sigmund-yXiLaaYwg_E-unsplash](https://user-images.githubusercontent.com/47083513/130665579-e33f257a-c314-4c24-85e0-3de78ebcf597.jpg)
 
 ## Introduction
-- At the best of times, the internet can be a very confusing place. This post will act as a guide to give a better understanding of where the internet came from and how to utilize Jsoup to harness its awesome power.
-
+- As our society has entered and now currently resides in the era of `big data`, data collection has becoming a booming industry. For the Java programming language there is no better choice for data collection than the Jsoup library. This article will show you how to get started with Jsoup and even introduce some of the more complex parts of web scraping.
 
 ## Table of Contents
  
 <!-- TOC -->
 
 
- - [Breif Historty of the Internet](#history-of-internet)
- - [What is HTTP?](#http)
- - [Getting started with Maven](#getting)
- - [Jsoup](#j-soup)
- - [Scaping data from a table](#scaping)
+ - [What is Jsoup](#j-soup)
+ - [Getting started](#getting)
+ - [Jsoup methods](#beggining)
+ - [CSS Selectors](#css)
  - [Dealing with pagination](#pagination)
  - [Disguising the requests](#hidden)
+ - [Rendering JavaScript](#javascript)
  - [Conclusion](#final)
     
     
@@ -28,59 +27,25 @@ titlePictureSoup
 <!-- /TOC -->
 
 
-## <a name="history-of-internet">Breif Historty of the Internet</a>
-- To be able to fully appreciate the sheer magnatude of what Jsoup is allowing us to do, we need to take a brief tour through the history of the internet. Starting at the Telegraph.
-
- 
-### Telegraph
- - Created in 1844, it is hard to put into words how revolutionary the Telegraph was. Prior to the Telegraph, The United states of America had the famed [Pony Express](https://en.wikipedia.org/wiki/Pony_Express) to deliver information. At it's peak, the Pony Express could deliver  information from one side of the United States to the other in 10 days. If you follow the data conversions provided [HERE](https://eager.io/blog/communication-pre-internet/) under the Pony Express section, we get a data transmission rate of about 6 bits per second. Of course this does not include the latency issues that riding horses coast to coast would invoke, so in reality it would be much slower.
-  - When the Telegraph was put into use, data transmission became almost instant and the death of the Pony Express became definite. The Telegraph  used dots and dashes(similar to binary) to communicate information from one station to another. The first message sent was the incredibly melancholy quote of, `WHAT HATH GOD WROUGHT`, from the supreme court chamber in Washington, D.C, USA to a train station in Baltimore, Maryland, USA.
 
 
+## <a name="j-soup">Jsoup</a>
+- Jsoup is an open-source Java library designed to parse, extract, and manipulate data stored in HTML documents. it was created in 2009 by Jonathan Hedley to deal with all varieties of HTML found in the wild.
 
-### ALOHAnet 
- - Fast forward to 1971 and at the University of Hawaii ALOHAnet was created, arguably the true grandfather of the internet. Born out of the need for the university to connect all of its campuses and influenced by the geographical hinderance of the campuses all being on different islands. These unique restrictions would ultimately lead to the world's first wirelessly connected network. The technology and protocols developed for ALOHAnet are still used and influence most of what our modern virtual world runs on. Fun fact, ALOHAnet celebrated its 50th anniversary this year. So make sure to say happy birthday next times you use the internet :) .
+## Basics of Jsoup
+- There are 3 main classes that you will most often deal with in Jsoup:
 
+ 	- `Element` : a class that represents an HTML element consisting of a tag name, attributes and Child nodes. From an Element, you can extract data, traverse, and manipulate the HTML.
+ 	
+ 	- `Elements` : a class that represetns a List of type Element and consists of methods that act on every element in the list.
 
-### The Internet
-- In 1983, fueled by the [Cold War](https://en.wikipedia.org/wiki/Cold_War) was the invention of the internet. Which at its most simplistic description is just a network of computers that have all agreed to communicate information in the same way. However, the internet was mostly used by researchers, academics and university students to share research material. The internet was essentially unknown outside of the academic and research communities. The World Wide Web(What you and I think of as the internet) was invented by British scientist Tim Berners-Lee in 1989 while working at CERN. When we type in `WWW` into our browser, we are using the World Wide Web. Now, it is important to point out that the internet and the World Wide Web are two completely different things. The internet is the underlying technological infrastructure that we use to send information from one computer to another. The World Wide Web is a collection of connected web servers that have specified locations that we can access to get stored information. A common analogy is that roads are the internet, while cars and shops are the World Wide Web.
+	- `Document` : a class that represents a HTML document.
 
-
-## <a name="http">What is HTTP</a>
-  - The Hyper Transfer Protocol (HTTP) is a standard that defines how a web client talks to a server and how data is transferred from the server back to the client. For each request from the client to the server, there are a series of 4 steps:
-  
-      1) The client opens a TCP connection(ensures proper data transmission) to the server on port 80,by default; other ports may be specified in the URL.
-      
-      2) The client sends a message to the server requesting the resource at a specified path. The request includes a header, and depending on the request, data for the request.
-      
-      3) The server send a response to the client. The response contains the appropriate data for the request.
-      
-      4) The server closes the connection. 
-
-### Structure of a HTTP Request.
-- Full information on HTTP can be found [HERE](https://www.scrapingbee.com/java-webscraping-book/#1-web-fundamentals)
-```
-GET /how-to-log-in-to-almost-any-websites/ HTTP/1.1
-Host: ksah.in
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-Accept-Encoding: gzip, deflate, sdch, br
-Connection: keep-alive
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
-
-```
-- Host : The domain name of the server, if no port number is given, is assumed to be 80.
- 
-- User-Agent : Contains information about the client originating the request, including the OS information. In this case, it is my web-browser (Chrome), on OSX. This header is important because it is either used for statistics (How many users visit my website on Mobile vs Desktop) or to prevent any violations by bots. Because these headers are sent by the clients, it can be modified (it is called “Header Spoofing"), and that is exactly what we will do with our scrapers, to make our scrapers look like a normal web browser.
-
-- Accept : The content types that are acceptable as a response. There are lots of different content types and sub-types: text/plain, text/html, image/jpeg, application/json …
- 
-- Cookie : name1=value1;name2=value2… This header field contains a list of name-value pairs. It is called session cookies, these are used to store data. Cookies are what websites use to authenticate users, and/or store data in your browser. For example, when you fill a login form, the server will check if the credentials you entered are correct, if so, it will redirect you and inject a session cookie in your browser. Your browser will then send this cookie with every subsequent request to that server.
-
-- Referer : The Referer header contains the URL from which the actual URL has been requested. This header is important because websites use this header to change their behavior based on where the user came from. For example, lots of news websites have a paying subscription and let you view only 10% of a post, but if the user came from a news aggregator like Reddit, they let you view the full content. They use the referer to check this. Sometimes we will have to spoof this header to get to the content we want to extract.
+	- `Connection` : a interface is a convenient HTTP client and session object to fetch content from the web, and parse them into Documents.
 
 
 ## <a name="getting">Getting Started</a>
-- To give this project some structure use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and past the code below into your console.
+- To give this project some structure, use Maven. If you are unfamiliar with Maven, it is an advanced built tool that along with a lot of other bells and whistles will give the project some much needed structure. To create this project, use the Maven quickstart archetype. Copy and paste the code below into your console.
 ```
 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
@@ -88,8 +53,8 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 - This assumes that you already have Maven installed on your local machine. If you do not have Maven installed then please visit this the link [HERE](https://books.sonatype.com/mvnref-book/reference/installation.html) and follow the instructions to download maven.
 
 
-## <a name="j-soup">Jsoup</a>
--  If you are unfamiliar with Jsoup, it is a Java library for working with real-world HTML. It provides a very convenient API for fetching ULRs, extracting and manipulating data. To add Jsoup to the project  add the Maven dependency for it, which can be found below:
+## Adding Jsoup
+-  To add Jsoup to the project, add the Maven dependency for it, which can be found below:
 ```
 <dependency>
     <groupId>org.jsoup</groupId>
@@ -98,10 +63,69 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 </dependency>
 ```
 - Make sure to add the code listed above into the dependency list which can be found inside the POM.xml file.
-- Now that  everything set up we can begin scraping our data.
+- Now with the basic file structure set up, lets learn about some of the most important methods in Jsoup
+
+## <a name="beggining">Important methods for retrieving elements</a>
+- At the core of any good web scapping algorithm is the ability to find the HTML element with the desired data. The methods provide this ability.
+
+- `getElementById(String id)`: this method returns the first element with the matching id
+
+- `getElementsByClass(String className)`: this method returns a Elements object of all the elements that have the specified class name. Also, notice the method is `getElementsByClass` not `getElementByClass`.
+
+- `getElementsByAttribute(String key)`: this method returns a Elements object and each element will have the specified attribute.
 
 
-## <a name="scaping">Scaping data from a table</a>
+## Important methods for retrieving element data
+- Once an element is found data will need to be extracted from it. The methods below provide this ability.
+
+- `attr(String key)`: returns a String which is the attribute value from the matched element that has the specified attribute. If no elements contain the attribute then an empty string is returned.
+
+- `html()`: returns a String of all the element's inner HTML.
+
+- `text()`: returns a String of all the matched elements. Very useful for quickly eliminating all unwanted HTML and only returning the desired text. It should be noted that if there is multiple text, text() will return a unescaped String of all the text combined. That result is usually unsatisfactory in data collection. To remedy this situation use `.eachText()` instead.
+
+- `eachText()`: returns a String list, where each element in the list is a matched string returned by text().
+
+- `first()`: returns the first matched element, or null if contents are empty. Very helpful when used on Elements to return the first element in the list.
+
+## Simple Jsoup Example
+- The code below is a basic example showing how to start using Jsoup. If you run the code and check the console it will show the results of each method. Also, If you are unfamiliar with Jsoup I recommend you use this code to better understand the methods Jsoup provides. Use the methods that are not shown in the example, `getElementById(String id)`, `html()` or `attr(String key)`. Experimenting with provided mehtods in this way will give you a solid understanding of the basics of Jsoup.
+
+```
+public static void main(String[] args) {
+		
+		Connection connection = Jsoup.connect("https://www.javawebscrapingsandbox.com");
+		
+		try {
+			Document doc = connection.get();
+			Elements example = doc.getElementsByClass("item");
+			
+			System.out.println(example);
+			System.out.println();
+			System.out.println(example.first());
+			System.out.println();
+			System.out.println(example.text());
+			System.out.println();
+			System.out.println(example.eachText());
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+```
+
+## <a name="css">CSS Selectors</a>
+- Considered a move advanced topc of web scaping, css selectors make use of the structure of a webpage to navigate through the HTML and select the wanted data. To use css selectors in Jsoup, use the `select(Evaluator)` method which is avaliable in the Document, Element and Elements classes. The `select(Evaluator)` method takes an `Evaluator` which is used to find elements that match the supplied `Evaluator`. Below are examples of the `Evaluator`s that Jsoup provides.
+
+- `tagname`: find elements by tag
+
+- `[attribute]`: find elements with attribute
+
+- `.class`: find elements by class name
+
+
+## <a name="scaping">CSS selectors example. Scaping data from a table</a>
 - When scrapping data from a website, it is always best to be kind an courteous with your scrapping practices. If you make too many requests, you could get your IP banned or even crash the site. You should use web scraping techniques as a last resort, always check if the website you are trying to scrape has an API before you start scaping.
 - The site that we are going to be scrapping today is a website made specifically for practicing web scrapping, it can be found [HERE](https://www.javawebscrapingsandbox.com/product). Shout out to [Kevin Sahin](https://twitter.com/SahinKevin) for making a sandbox website to practice web scraping.
 
@@ -129,6 +153,8 @@ System.out.println(doc);
 - `get() :` executes a get request and returns a HTML document
 
 
+
+
 - Now in order to deal with the exception error  surround the code with a try/catch blocks
 
 ```
@@ -144,6 +170,15 @@ System.out.println(doc);
 
 ```
 - Now when this code runs, it will print out the entire html document that is stored inside the variable of doc. With that done, move on to the more complex bit, which is scraping the data from the html document inside of doc.
+
+- in The code example below, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print them out together.
+
+- `doc.select( "table.ui.celled.table tr" )` : uses a css class selector `table.ui.celled.table` in combination with a css tagname selector `tr` to get access to the table rows. 
+
+- `.select("td:nth-of-type(1)").text()`: uses a css tagname selector `td` in combination with the pseudo-class notation of `:nth-of-type(1)` to find the first td Element. `text()` returns a String of all the text in the `td` Element. 
+
+- As you can see from the example below, CSS selectors really shine when they are combined together. If you wish to read more about css selectors and pseudo-class selectors  I recommend reading the documentation [HERE](https://jsoup.org/apidocs/org/jsoup/select/Selector.html)
+
 
 ```
 
@@ -169,11 +204,7 @@ System.out.println(doc);
 
 ```
 
--  As you can tell from the code above, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print them out together.
 
-`doc.select( "table.ui.celled.table tr" )` : is what gives the code a list of items to loop over, `table.` is used because we are scaping a table, if we were scaping a div then it would be `div.`. `ui.celled.table` is actually the class name of the table. That is not entirely true, the actual name of the class is `ui celled table`, the browser adds the dots automatically. Lastly the `tr` is telling the select() method to get each table row
-
-`final String name = row.select("td:nth-of-type(1)").text();` : this is a demonstration of how to harness the power of CSS selectors. `td` is used to define a standard data cell in an HTML table. `nth-of-type(1)` is the CSS selector that allows the capture of the first column in the table's row. `text()` is used to get the string value from the element that is returned. This process is then repeated with url and price, allowing us to format everything nicely with ` System.out.println(name +" "+ url +" "+ price);`.
 
 ## <a name="pagination">Dealing with pagination</a>
 - In web scraping a common task you will come up against is dealing with pagination(extra pages).This section will show you one way of how to deal with pagination. Now, of course you can deal with pagination any way you seem fit and what works for one site may not work for another. However, the code in this section offers an easy and intuitive solution for dealing with the pagination presented to us today.
@@ -181,13 +212,14 @@ System.out.println(doc);
  PaginationFirst
  PaginationLast
 -->
+- As you can see from the pictures below the main focus for the code will be the arrows highlighted in red. Essentially all it comes down to checking if there is a right arrow. If the arrow does not exist then the code knows to stop scraping.
 
 <img width="1145" alt="PaginationFirstpng" src="https://user-images.githubusercontent.com/47083513/131031468-78c74217-ab41-4ac9-98bb-3c856ecae4fd.png">
 
 <img width="1151" alt="PaginationLast" src="https://user-images.githubusercontent.com/47083513/131031749-cb84fcea-b767-40c9-bd32-5e6e82b34d5f.png">
 
 
-- As you can see from the pictures above the main focus for the code will be the arrows highlighted in red. Essentially all it comes down to checking if there is a right arrow. If the arrow does not exist then the code knows to stop scraping.
+- The code below is exactly the same as the previous code, except for the private member variable `private Document doc;`. It will be used to hold the document that will be scraped.
 - To eliminate code reuse, create a new class in the maven project and call it `Scraper`, paste the code below:
 ```
 public class Scraper {
@@ -204,7 +236,7 @@ private Document doc;
 					)) {
 				
 					final String name = row.select("td:nth-of-type(1)").text();
-				    final String url = row.select("td:nth-of-type(2)").text();
+				        final String url = row.select("td:nth-of-type(2)").text();
 					final String price = row.select("td:nth-of-type(3)").text();
 					
 					System.out.println(name +" "+ url +" "+ price);
@@ -214,9 +246,15 @@ private Document doc;
 }
 ```
 
-- The code above is exactly the same as the previous code, except for the private member variable `private Document doc;`. It will be used to hold the document that will be scraped.
+
 
 - The next step is to create a new class and paste the code below into the main method.
+
+- `.select("i.right.chevron.icon")`: another example of using the css class selector.
+
+- `.hasClass("right chevron icon")`: returns a boolean to test if this element has the class `right chevron icon`
+
+- The code below has a while loop, this allows our bot to continously make requests with `String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);` and then scrape that the data that is returned with `Scraper scraping = new Scraper(doc);`(the previous class created). `Elements data = doc.select("i.right.chevron.icon");` is used to get the right arrow. `if(data.hasClass("right chevron icon")){}` is used to check if if data has a Element with the class of `right chevron icon` , if there isn't then that means the bot has entered the last page and to enter the else block. `scraping.scrape();` is used to scrape the last page, lastly printing out `End of pages` and breaking out of the while loop.
 
 ```
 public static void main(String[] args) {
@@ -260,7 +298,7 @@ public static void main(String[] args) {
 		
 	}
 ```
-- The code above is fairly straight forward. Notice the while loop, this allows our bot to continously make requests with `String urlString = String.format("https://www.javawebscrapingsandbox.com/product/%s", urlNum);` and then scrape that the data that is returned with `Scraper scraping = new Scraper(doc);`(the previous class created). `Elements data = doc.select("i.right.chevron.icon");` is used to get the right arrow. `if(data.hasClass("right chevron icon")){}` is used to check if if data has a Element with the class of `right chevron icon` , if there isn't then that means the bot has entered the last page and to enter the else block. `scraping.scrape();` is used to scrape the last page, lastly printing out `End of pages` and breaking out of the while loop.
+
 
 
 ## <a name="hidden">Disguising the requests</a>
@@ -272,8 +310,12 @@ connection.userAgent("Mozilla")
 - Just make sure that these two pieces of code are inside of the while loop and before the call to `Elements data = doc.select("i.right.chevron.icon");`.  The sleep() method causes the current thread to suspend execution for two senconds, which makes our bot look a little more human. This code works because the code we are writing is small, but if you are making something that is multithreaded, then the sleep() method should not be called on the main thread. `userAgent("Mozilla")` is used to set the request user-agent header and make the request seem more natural. If you want to learn more about how to hide your bots actions you can find more information [HERE](https://www.scrapingbee.com/java-webscraping-book/#6-stay-under-cover).
 
 
+## <a name="javascript">Javascript Rendering</a>
+- When a page is queried from a website, what gets sent back is HTML which Jsoup is able to parse, because it is an HTML parser. However, most websites include JavaScript in that HTML, or linked from that HTML, which will propigate the page with content. Browsers like chrome are able to populate the page, Jsoup is not. So long story short Jsoup will download the HTML and the JavaScript but will not be able to execute the JavaScript and if the website has JavaScript to run, which most do, the webpage will not be rendered properly. This will make scraping the webpage with Jsoup alone ineffective, what is needed is a headless browser. A common headless browser today is `headless chrome` use that in combination with `Selenium` and the website wil be able to be scraped as it appears on screen.
+
+
 ## <a name="final">Conclusion</a>
 - The internet and web scraping are two incredibly powerful things. However, you must always remember to be courteous of the pages you are scraping and mindful of how many requests you send to a server. 
-- Thank you and may the internet be ever in your favour.
+- Jsoup is an incredible tool and if you wish to find out more check out the documentation, [HERE](https://jsoup.org/)
 
 
