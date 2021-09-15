@@ -1,4 +1,4 @@
-# Webscraping with Java in Jsoup
+# Web scraping with Java in Jsoup
 
 <!---
 titlePictureSoup
@@ -6,7 +6,7 @@ titlePictureSoup
 ![sigmund-yXiLaaYwg_E-unsplash](https://user-images.githubusercontent.com/47083513/130665579-e33f257a-c314-4c24-85e0-3de78ebcf597.jpg)
 
 ## Introduction
-- As our society has entered and now currently resides in the era of `big data`, data collection has becoming a booming industry. For the Java programming language there is no better choice for data collection than the Jsoup library. This article will show you how to get started with Jsoup and even introduce some of the more complex parts of web scraping.
+- As our society has entered and now currently resides in the era of big data, data collection has become a booming industry. For the Java programming language there is no better choice for data collection than the Jsoup library. This article will show you how to get started with Jsoup and even introduce some of the more complex parts of web scraping.
 
 ## Table of Contents
  
@@ -16,7 +16,7 @@ titlePictureSoup
  - [What is Jsoup](#j-soup)
  - [Getting started](#getting)
  - [Jsoup methods](#beggining)
- - [CSS Selectors](#css)
+ - [CSS selectors](#css)
  - [Dealing with pagination](#pagination)
  - [Disguising the requests](#hidden)
  - [Rendering JavaScript](#javascript)
@@ -37,11 +37,9 @@ titlePictureSoup
 
  	- `Element` : a class that represents an HTML element consisting of a tag name, attributes and Child nodes. From an Element, you can extract data, traverse, and manipulate the HTML.
  	
- 	- `Elements` : a class that represetns a List of type Element and consists of methods that act on every element in the list.
+ 	- `Elements` : a class that represents a List of type Element and consists of methods that act on every element in the list.
 
 	- `Document` : a class that represents a HTML document.
-
-	- `Connection` : a interface is a convenient HTTP client and session object to fetch content from the web, and parse them into Documents.
 
 
 ## <a name="getting">Getting Started</a>
@@ -54,7 +52,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 
 
 ## Adding Jsoup
--  To add Jsoup to the project, add the Maven dependency for it, which can be found below:
+-  To add Jsoup to the project, add the Maven dependency (shown below) for it to the dependency list which can be found inside the Maven POM.xml file.
 ```
 <dependency>
     <groupId>org.jsoup</groupId>
@@ -62,7 +60,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
     <version>1.14.2</version>
 </dependency>
 ```
-- Make sure to add the code listed above into the dependency list which can be found inside the POM.xml file.
+
 - Now with the basic file structure set up, lets learn about some of the most important methods in Jsoup
 
 ## <a name="beggining">Important methods for retrieving elements</a>
@@ -89,7 +87,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 - `first()`: returns the first matched element, or null if contents are empty. Very helpful when used on Elements to return the first element in the list.
 
 ## Simple Jsoup Example
-- The code below is a basic example showing how to start using Jsoup. If you run the code and check the console it will show the results of each method. Also, If you are unfamiliar with Jsoup I recommend you use this code to better understand the methods Jsoup provides. Use the methods that are not shown in the example, `getElementById(String id)`, `html()` or `attr(String key)`. Experimenting with provided mehtods in this way will give you a solid understanding of the basics of Jsoup.
+- The code below is a basic example showing how to start using Jsoup. If you run the code and check the console it will show the results of each method. Also, If you are unfamiliar with Jsoup I recommend you use this code to better understand the methods Jsoup provides. Use the methods that are not shown in the example, `getElementById(String id)`, `html()` or `attr(String key)`. Experimenting with provided methods in this way will give you a solid understanding of the basics of Jsoup.
 
 ```
 public static void main(String[] args) {
@@ -116,7 +114,7 @@ public static void main(String[] args) {
 ```
 
 ## <a name="css">CSS Selectors</a>
-- Considered a move advanced topc of web scaping, css selectors make use of the structure of a webpage to navigate through the HTML and select the wanted data. To use css selectors in Jsoup, use the `select(Evaluator)` method which is avaliable in the Document, Element and Elements classes. The `select(Evaluator)` method takes an `Evaluator` which is used to find elements that match the supplied `Evaluator`. Below are examples of the `Evaluator`s that Jsoup provides.
+- Considered a more advanced topic of web scaping, css selectors make use of the structure of a webpage to navigate through the HTML and select the wanted data. To use css selectors in Jsoup, use the `select(Evaluator)` method which is avaliable in the Document, Element and Elements classes. The `select(Evaluator)` method takes an `Evaluator` which is used to find elements that match the supplied `Evaluator`. Below are examples of the `Evaluator`s that Jsoup provides.
 
 - `tagname`: find elements by tag
 
@@ -171,9 +169,9 @@ System.out.println(doc);
 ```
 - Now when this code runs, it will print out the entire html document that is stored inside the variable of doc. With that done, move on to the more complex bit, which is scraping the data from the html document inside of doc.
 
-- in The code example below, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print them out together.
+- In The code example below, we are using a foreach loop to loop over the HTML document(doc) and for each item inside of table we want to grab the name, url, price and then print them out together.
 
-- `doc.select( "table.ui.celled.table tr" )` : uses a css class selector `table.ui.celled.table` in combination with a css tagname selector `tr` to get access to the table rows. 
+- `.select( "table.ui.celled.table tr" )` : uses a css class selector `table.ui.celled.table` in combination with a css tagname selector `tr` to get access to the table rows. 
 
 - `.select("td:nth-of-type(1)").text()`: uses a css tagname selector `td` in combination with the pseudo-class notation of `:nth-of-type(1)` to find the first td Element. `text()` returns a String of all the text in the `td` Element. 
 
@@ -315,7 +313,7 @@ connection.userAgent("Mozilla")
 
 
 ## <a name="final">Conclusion</a>
-- The internet and web scraping are two incredibly powerful things. However, you must always remember to be courteous of the pages you are scraping and mindful of how many requests you send to a server. 
+- Big data is here to stay, let try to enjoy the ride. 
 - Jsoup is an incredible tool and if you wish to find out more check out the documentation, [HERE](https://jsoup.org/)
 
 
